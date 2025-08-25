@@ -28,5 +28,14 @@ namespace SPTBattleAmbience.Utility
                 _ => ELocation.Unknown,
             };
         }
+
+        public static Vector3 GetVectorWithAngleOffset(Vector3 vector, float angleRange)
+        {
+            float angle = Mathf.Atan2(vector.z, vector.x);
+            float offset = Mathf.Deg2Rad * Random.Range(-angleRange, angleRange);
+            float newAngle = angle + offset;
+
+            return new Vector3(Mathf.Cos(newAngle), vector.y, Mathf.Sin(newAngle)).normalized;
+        }
     }
 }

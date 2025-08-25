@@ -90,7 +90,6 @@ namespace SPTBattleAmbience.Controllers
 
             Player mainPlayer = Singleton<GameWorld>.Instance.MainPlayer;
             ELocation currentLocation = Utils.GetLocationEnum(mainPlayer.Location);
-            Plugin.Logger.LogWarning($"Current map location: {currentLocation}");
             MapConfigBase mapConfig = ConfigHelper.GetMapConfig(currentLocation);
 
             if (mapConfig == null || !mapConfig.EnableEvents.Value)
@@ -101,7 +100,21 @@ namespace SPTBattleAmbience.Controllers
                 return;
             }
 
-            DebugLogger.LogWarning($"Triggering ambience for map: {currentLocation}");
+            Vector3 soundSpawnPoint;
+            if (mapConfig.UsePlayerDirection.Value)
+            {
+                Vector3 mapCenter = mapConfig.MapCenter.Value;
+                float mapRadius = mapConfig.MapRadius.Value;
+                Vector3 dirToPlayerFlat = (mainPlayer.Position - mapCenter).WithY(0).normalized;
+                Vector3 soundSpawnDir = Utils.GetVectorWithAngleOffset(dirToPlayerFlat, 30f);
+                soundSpawnPoint = mapCenter + soundSpawnDir * mapRadius;
+            }
+            else
+            {
+                soundSpawnPoint = mainPlayer.Position + Utils.RandomVector.WithY(0) * 30f;
+            }
+
+            DebugLogger.LogWarning($"Triggering ambience for map: {currentLocation} | Position {soundSpawnPoint}");
 
             ESoundEvent soundEvent = BattleSoundHelper.GetRandomSoundEvent();
             BattleSoundConfigBase soundConfig = ConfigHelper.GetSoundConfig(soundEvent);
@@ -120,7 +133,7 @@ namespace SPTBattleAmbience.Controllers
                 soundConfig.MaximumSoundGap.Value
             );
 
-            StartCoroutine(PerformAmbience(sequence, mapConfig, soundConfig.MinimumVolume.Value, soundConfig.MaximumVolume.Value));
+            StartCoroutine(PerformAmbience(sequence, mapConfig, soundSpawnPoint, soundConfig.MinimumVolume.Value, soundConfig.MaximumVolume.Value));
         }
 
         public BattleSoundSequence GenerateSequence(EBattleSoundType[] soundTypes, int minClips, int maxClips, float minGap, float maxGap)
@@ -157,12 +170,10 @@ namespace SPTBattleAmbience.Controllers
             return sequence;
         }
 
-        private IEnumerator PerformAmbience(BattleSoundSequence sequence, MapConfigBase mapConfig, float minVolume, float maxVolume)
+        private IEnumerator PerformAmbience(BattleSoundSequence sequence, MapConfigBase mapConfig, Vector3 position, float minVolume, float maxVolume)
         {
-            DebugLogger.LogWarning("Starting ambience playback coroutine.");
+            DebugLogger.LogWarning("Starting ambience coroutine.");
 
-            Player mainPlayer = Singleton<GameWorld>.Instance.MainPlayer;
-            Vector3 pos = mainPlayer.Position + Utils.RandomVector.WithZ(0) * 30f;
             float mapVolumeMult = Random.Range(mapConfig.MinVolumeMultiplier.Value, mapConfig.MaxVolumeMultiplier.Value);
             float globalMult = GeneralConfig.GlobalAmbientVolumeMult.Value;
             float volume = Random.Range(minVolume, maxVolume) * globalMult * mapVolumeMult;
@@ -174,12 +185,12 @@ namespace SPTBattleAmbience.Controllers
                 DebugLogger.LogWarning($"Playing ambience clip: {clipInfo.Key.name} and waiting for: {clipInfo.Value} seconds.");
 
                 Singleton<BetterAudio>.Instance.PlayAtPoint(
-                    pos,
+                    position,
                     clipInfo.Key,
-                    BetterAudio.AudioSourceGroupType.Environment,
+                    GeneralConfig.AudioSourceGroup.Value,
                     GeneralConfig.AmbientRolloff.Value,
                     volume,
-                    EOcclusionTest.ContinuousPropagated,
+                    GeneralConfig.OcclusionTestMode.Value,
                     null,
                     true,
                     true

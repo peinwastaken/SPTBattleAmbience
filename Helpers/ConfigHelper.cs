@@ -4,9 +4,11 @@ using SPTBattleAmbience.Config;
 using SPTBattleAmbience.Config.Events;
 using SPTBattleAmbience.Config.General;
 using SPTBattleAmbience.Data.Enum;
+using SPTBattleAmbience.Utility;
 using System.Collections.Generic;
+using UnityEngine;
 
-namespace SPTBattleAmbience.Utility
+namespace SPTBattleAmbience.Helpers
 {
     public static class ConfigHelper
     {
@@ -39,6 +41,9 @@ namespace SPTBattleAmbience.Utility
                 MaxVolumeMultiplier = 1f,
                 AmbienceEventCooldownMultiplier = 1f,
                 EnableEvents = true,
+                MapCenter = new Vector3(190f, 0, -15f),
+                MapRadius = 700f,
+                UsePlayerDirection = true,
             });
 
             MapConfigs[ELocation.Factory] = new MapConfigBase(config, new MapConfigStruct
@@ -50,6 +55,9 @@ namespace SPTBattleAmbience.Utility
                 MaxVolumeMultiplier = 1.5f,
                 AmbienceEventCooldownMultiplier = 0.8f,
                 EnableEvents = true,
+                MapCenter = new Vector3(20f, 0, 5f),
+                MapRadius = 300f,
+                UsePlayerDirection = true,
             });
 
             MapConfigs[ELocation.Woods] = new MapConfigBase(config, new MapConfigStruct
@@ -61,6 +69,9 @@ namespace SPTBattleAmbience.Utility
                 MaxVolumeMultiplier = 1f,
                 AmbienceEventCooldownMultiplier = 1.3f,
                 EnableEvents = true,
+                MapCenter = new Vector3(-30f, 0, -200f),
+                MapRadius = 1100f,
+                UsePlayerDirection = true,
             });
 
             MapConfigs[ELocation.Shoreline] = new MapConfigBase(config, new MapConfigStruct
@@ -72,6 +83,9 @@ namespace SPTBattleAmbience.Utility
                 MaxVolumeMultiplier = 1f,
                 AmbienceEventCooldownMultiplier = 1f,
                 EnableEvents = true,
+                MapCenter = new Vector3(-215f, 0, 165f),
+                MapRadius = 1000f,
+                UsePlayerDirection = true,
             });
 
             MapConfigs[ELocation.Interchange] = new MapConfigBase(config, new MapConfigStruct
@@ -83,6 +97,9 @@ namespace SPTBattleAmbience.Utility
                 MaxVolumeMultiplier = 1f,
                 AmbienceEventCooldownMultiplier = 0.8f,
                 EnableEvents = true,
+                MapCenter = new Vector3(95f, 0, -55f),
+                MapRadius = 650f,
+                UsePlayerDirection = true,
             });
 
             MapConfigs[ELocation.Lighthouse] = new MapConfigBase(config, new MapConfigStruct
@@ -94,6 +111,9 @@ namespace SPTBattleAmbience.Utility
                 MaxVolumeMultiplier = 1f,
                 AmbienceEventCooldownMultiplier = 0.9f,
                 EnableEvents = true,
+                MapCenter = new Vector3(-15, 0, -185),
+                MapRadius = 1200f,
+                UsePlayerDirection = true,
             });
 
             MapConfigs[ELocation.Reserve] = new MapConfigBase(config, new MapConfigStruct
@@ -105,6 +125,9 @@ namespace SPTBattleAmbience.Utility
                 MaxVolumeMultiplier = 1f,
                 AmbienceEventCooldownMultiplier = 1f,
                 EnableEvents = true,
+                MapCenter = new Vector3(-30f, 0, -25f),
+                MapRadius = 600f,
+                UsePlayerDirection = true,
             });
 
             MapConfigs[ELocation.Streets] = new MapConfigBase(config, new MapConfigStruct
@@ -116,6 +139,9 @@ namespace SPTBattleAmbience.Utility
                 MaxVolumeMultiplier = 1f,
                 AmbienceEventCooldownMultiplier = 0.6f,
                 EnableEvents = true,
+                MapCenter = new Vector3(30f, 0, 155f),
+                MapRadius = 700f,
+                UsePlayerDirection = true,
             });
 
             MapConfigs[ELocation.GroundZero] = new MapConfigBase(config, new MapConfigStruct
@@ -127,6 +153,9 @@ namespace SPTBattleAmbience.Utility
                 MaxVolumeMultiplier = 1f,
                 AmbienceEventCooldownMultiplier = 0.5f,
                 EnableEvents = true,
+                MapCenter = new Vector3(0, 0, 0),
+                MapRadius = 800f,
+                UsePlayerDirection = true,
             });
 
             MapConfigs[ELocation.Labs] = new MapConfigBase(config, new MapConfigStruct
@@ -138,6 +167,9 @@ namespace SPTBattleAmbience.Utility
                 MaxVolumeMultiplier = 1f,
                 AmbienceEventCooldownMultiplier = 1f,
                 EnableEvents = false,
+                MapCenter = new Vector3(0, 0, 0),
+                MapRadius = 1000f,
+                UsePlayerDirection = false,
             });
 
             DebugLogger.LogWarning($"Initialized {MapConfigs.Count} map configs");

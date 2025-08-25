@@ -7,13 +7,12 @@ using SPTBattleAmbience.Data.Enum;
 using SPTBattleAmbience.Helpers;
 using SPTBattleAmbience.Models;
 using SPTBattleAmbience.Patches;
-using SPTBattleAmbience.Utility;
 using System;
 using System.IO;
 
 namespace SPTBattleAmbience
 {
-    [BepInPlugin("com.pein.battleambience", "SPTBattleAmbience", "1.0.0")]
+    [BepInPlugin("com.pein.battleambience", "SPTBattleAmbience", "1.1.0")]
     public class Plugin : BaseUnityPlugin
     {
         public static new ManualLogSource Logger;
@@ -35,7 +34,7 @@ namespace SPTBattleAmbience
 
         private void Update()
         {
-            if (GeneralConfig.PlayAmbientShortcut.Value.IsDown())
+            if (GeneralConfig.EnableDebug.Value == true && GeneralConfig.PlayAmbientShortcut.Value.IsDown())
             {
                 DebugLogger.LogWarning("Playing ambient battle sounds...");
                 BattleAmbienceController.Instance.TriggerAmbience();
