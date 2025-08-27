@@ -1,0 +1,33 @@
+{
+  "ambienceEvents": {
+    "eventConfigGroup": {
+      "category": "weapons",
+      "eventConfigs": {
+        "firefight": {
+          "usePlayerDirection": true,
+          "minimumSoundTypes": 1,
+          "maximumSoundTypes": 2,
+          "minimumSoundGap": 1,
+          "maximumSoundGap": 3,
+          "minimumVolume": 0.3,
+          "maximumVolume": 0.7,
+          "minimumTimeToNextAmbience": 30,
+          "maximumTimeToNextAmbience": 90,
+          "timeRestriction": "always"
+        },
+        "intenseFirefight": {
+          "usePlayerDirection": true,
+          "minimumSoundTypes": 2,
+          "maximumSoundTypes": 4,
+          "minimumSoundGap": 0.5,
+          "maximumSoundGap": 3,
+          "minimumVolume": 0.3,
+          "maximumVolume": 0.7,
+          "minimumTimeToNextAmbience": 60,
+          "maximumTimeToNextAmbience": 120,
+          "timeRestriction": "always"
+        }
+      }
+    }
+  }
+}

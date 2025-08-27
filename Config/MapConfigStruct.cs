@@ -1,11 +1,9 @@
-﻿using SPTBattleAmbience.Data.Enum;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SPTBattleAmbience.Config
 {
     public struct MapConfigStruct
     {
-        public ELocation Location;
         public int ConfigOrder;
         public string ConfigCategory;
         public bool EnableEvents;

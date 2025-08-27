@@ -16,8 +16,7 @@ namespace SPTBattleAmbience.Patches
         [PatchPrefix]
         private static void PatchPrefix()
         {
-            Plugin.LoadBattleSounds();
-            BattleAmbienceController.Instance.OnGameStarted();
+            BattleAmbienceController.Instance?.OnGameStarted();
         }
     }
 }

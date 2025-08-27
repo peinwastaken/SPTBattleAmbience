@@ -12,8 +12,10 @@ namespace SPTBattleAmbience.Helpers
     public static class FileHelper
     {
         public static string PluginDirectory => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        public static string AssetsPath => Path.Combine(PluginDirectory, "Assets");
-        public static string SoundsPath => Path.Combine(AssetsPath, "Sounds");
+        public static string AssetsPath => Path.Combine(PluginDirectory, "assets");
+        public static string SoundsPath => Path.Combine(AssetsPath, "sounds");
+        public static string ConfigsPath => Path.Combine(AssetsPath, "configs");
+        public static string MapConfigsPath => Path.Combine(ConfigsPath, "maps");
 
         public static string[] ReadDirectories(string path)
         {
@@ -50,9 +52,10 @@ namespace SPTBattleAmbience.Helpers
             return null;
         }
 
-        public static async void LoadAudioClipsFromDirectory(string path, Dictionary<string, AudioClip> clips)
+        public static async Task<Dictionary<string, AudioClip>> LoadAudioClipsFromDirectory(string path)
         {
             string[] filePaths = ReadFiles(path, "*.wav");
+            Dictionary<string, AudioClip> clips = [];
 
             foreach (string filePath in filePaths)
             {
@@ -62,7 +65,7 @@ namespace SPTBattleAmbience.Helpers
                 clips[fileName] = clip;
             }
 
-            DebugLogger.LogError($"Loaded {clips.Count} audio clips.");
+            return clips;
         }
     }
 }

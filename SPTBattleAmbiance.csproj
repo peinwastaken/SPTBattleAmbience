@@ -41,6 +41,10 @@
       <HintPath>..\dependencies\EscapeFromTarkov_Data\Managed\Comfort.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\dependencies\EscapeFromTarkov_Data\Managed\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="spt-custom">
       <HintPath>..\dependencies\BepInEx\plugins\spt\spt-custom.dll</HintPath>
       <Private>False</Private>
@@ -121,12 +125,6 @@
   
   <ItemGroup>
     <Reference Update="System.Xml">
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Reference Update="System.Xml.Linq">
       <Private>False</Private>
     </Reference>
   </ItemGroup>

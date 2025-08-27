@@ -16,7 +16,7 @@ namespace SPTBattleAmbience.Patches
         [PatchPostfix]
         private static void PatchPostfix()
         {
-            BattleAmbienceController.Instance.OnGameEnded();
+            BattleAmbienceController.Instance?.OnGameEnded();
         }
     }
 }
