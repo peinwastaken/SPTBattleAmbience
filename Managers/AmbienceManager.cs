@@ -59,7 +59,7 @@ namespace SPTBattleAmbience.Managers
             }
 
             Player mainPlayer = GameWorldHelper.GetLocalPlayer();
-            string mapId = mainPlayer.Location;
+            string mapId = GameWorldHelper.GetCurrentMapId();
             MapConfigBase mapConfig = ConfigHelper.GetMapConfig(mapId);
 
             if (mapConfig == null || !mapConfig.EnableEvents.Value)

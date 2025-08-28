@@ -105,7 +105,7 @@ namespace SPTBattleAmbience.Helpers
                 MapRadius = 600f
             });
 
-            MapConfigs["streets"] = new MapConfigBase(config, new MapConfigStruct
+            MapConfigs["tarkovstreets"] = new MapConfigBase(config, new MapConfigStruct
             {
                 ConfigOrder = 12,
                 ConfigCategory = Category.Streets,
