@@ -5,6 +5,9 @@ namespace SPTBattleAmbience.Models.Maps
 {
     public class AmbienceEventConfig
     {
+        [JsonIgnore]
+        public string Name { get; set; }
+
         [JsonProperty("usePlayerDirection")]
         public bool UsePlayerDirection { get; set; } = true;
 
@@ -39,13 +42,13 @@ namespace SPTBattleAmbience.Models.Maps
         public float MaximumVolume { get; set; } = 1f;
 
         [JsonProperty("minimumTimeToNextAmbience")]
-        public float MinimumTimeToNextAmbience { get; set; } = 60f;
+        public float MinimumTimeToNextAmbience { get; set; } = 30f;
 
         [JsonProperty("maximumTimeToNextAmbience")]
-        public float MaximumTimeToNextAmbience { get; set; } = 300f;
+        public float MaximumTimeToNextAmbience { get; set; } = 240f;
 
         [JsonProperty("minimumTimeFromRaidStart")]
-        public float MinimumTimeFromRaidStart { get; set; } = 30f;
+        public float MinimumTimeFromRaidStart { get; set; } = 15f;
 
         [JsonProperty("maximumTimeFromRaidStart")]
         public float MaximumTimeFromRaidStart { get; set; } = 120f;

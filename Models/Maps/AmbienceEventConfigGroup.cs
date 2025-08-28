@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using SPTBattleAmbience.Data.Enum;
+using SPTBattleAmbience.Utility;
 using System.Collections.Generic;
 
 namespace SPTBattleAmbience.Models.Maps
@@ -16,7 +18,20 @@ namespace SPTBattleAmbience.Models.Maps
 
         public AmbienceEventConfig GetRandomEventConfig(bool useWeight = false)
         {
-            return EventConfigs.Values.PickRandom();
+            ETimeRestriction currentTimeRestriction = Utils.GetCurrentTimeRestriction();
+            List<AmbienceEventConfig> validConfigs = [];
+
+            foreach (AmbienceEventConfig config in EventConfigs.Values)
+            {
+                ETimeRestriction configTimeRestriction = config.TimeRestriction;
+
+                if (configTimeRestriction == currentTimeRestriction || configTimeRestriction == ETimeRestriction.Always)
+                {
+                    validConfigs.Add(config);
+                }
+            }
+
+            return validConfigs.PickRandom();
         }
     }
 }

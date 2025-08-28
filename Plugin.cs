@@ -93,6 +93,14 @@ namespace SPTBattleAmbience
                 string jsonContent = File.ReadAllText(mapConfigFile);
                 AmbienceEvents config = JsonConvert.DeserializeObject<AmbienceEvents>(jsonContent);
 
+                foreach (AmbienceEventConfigGroup configGroup in config.AmbienceEventGroups.Values)
+                {
+                    foreach (KeyValuePair<string, AmbienceEventConfig> kvp in configGroup.EventConfigs)
+                    {
+                        kvp.Value.Name = kvp.Key;
+                    }
+                }
+
                 AmbientHelper.MapAmbienceEvents[mapName] = config;
             }
         }

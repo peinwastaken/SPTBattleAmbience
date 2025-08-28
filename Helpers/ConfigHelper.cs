@@ -10,7 +10,7 @@ namespace SPTBattleAmbience.Helpers
 {
     public static class ConfigHelper
     {
-        public static Dictionary<string, MapConfigBase> MapConfigs = new Dictionary<string, MapConfigBase>();
+        public static Dictionary<string, MapConfigBase> MapConfigs { get; private set; } = new Dictionary<string, MapConfigBase>();
 
         public static void Initialize(ConfigFile config)
         {

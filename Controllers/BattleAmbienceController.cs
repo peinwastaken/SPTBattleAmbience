@@ -26,21 +26,21 @@ namespace SPTBattleAmbience.Controllers
             {
                 Destroy(gameObject);
             }
-            
-            AmbienceManagers = new List<AmbienceManager>();
         }
 
         public void OnGameStarted()
         {
+            AmbienceManagers = new List<AmbienceManager>();
+
             // force reload audioclips because otherwise they become null
             Plugin.LoadAmbientSoundCategories();
 
             string mapId = GameWorldHelper.GetCurrentMapId();
-            AmbienceEvents mapEvents = AmbientHelper.MapAmbienceEvents[mapId];
+            AmbientHelper.MapAmbienceEvents.TryGetValue(mapId, out AmbienceEvents mapEvents);
 
             if (mapEvents == null)
             {
-                DebugLogger.LogWarning($"Ambient events not found for map ${mapId}");
+                DebugLogger.LogWarning($"Ambient events not found for map {mapId}");
                 return;
             }
 

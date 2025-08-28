@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using SPTBattleAmbience.Data.Enum;
+using SPTBattleAmbience.Helpers;
+using UnityEngine;
 
 namespace SPTBattleAmbience.Utility
 {
@@ -35,6 +37,26 @@ namespace SPTBattleAmbience.Utility
             }
 
             return array;
+        }
+
+        public static bool IsDayTime()
+        {
+            string mapId = GameWorldHelper.GetCurrentMapId();
+            
+            if (mapId.StartsWith("factory4"))
+            {
+                return mapId == "factory4_day";
+            }
+
+            float hour = TOD_Sky.Instance.Cycle.Hour;
+            return hour >= 4 && hour <= 22;
+        }
+
+        public static ETimeRestriction GetCurrentTimeRestriction()
+        {
+            bool isDayTime = IsDayTime();
+
+            return isDayTime ? ETimeRestriction.Day : ETimeRestriction.Night;
         }
     }
 }

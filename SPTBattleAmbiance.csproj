@@ -72,10 +72,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Folder Include="Assets\" />
-  </ItemGroup>
-  
-  <ItemGroup>
     <Reference Update="mscorlib">
       <Private>False</Private>
     </Reference>

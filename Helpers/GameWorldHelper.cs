@@ -14,12 +14,7 @@ namespace SPTBattleAmbience.Helpers
         {
             string mapId = GetLocalPlayer()?.Location.ToLower();
 
-            return mapId switch
-            {
-                "sandbox_high" => "sandbox",
-                "factory4_night" => "factory4_day",
-                _ => mapId
-            };
+            return mapId;
         }
     }
 }

@@ -27,8 +27,7 @@
           "minimumVolume": 0.5,
           "maximumVolume": 1,
           "minimumTimeToNextAmbience": 60,
-          "maximumTimeToNextAmbience": 120,
-          "timeRestriction": "day"
+          "maximumTimeToNextAmbience": 120
         }
       }
     },

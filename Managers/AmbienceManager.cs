@@ -13,7 +13,6 @@ using SPTBattleAmbience.Utility;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace SPTBattleAmbience.Managers
 {
@@ -24,11 +23,13 @@ namespace SPTBattleAmbience.Managers
         public float TimeSinceLastEvent = 0f;
         public float NextEventTime = 0f;
 
-        public void ChooseNextAmbience()
+        public void ChooseNextAmbience(float cooldownMultiplier = 1f)
         {
             NextAmbienceEvent = EventConfigGroup.GetRandomEventConfig();
             TimeSinceLastEvent = 0f;
-            NextEventTime = Random.Range(NextAmbienceEvent.MinimumTimeToNextAmbience, NextAmbienceEvent.MaximumTimeToNextAmbience);
+            NextEventTime = Random.Range(NextAmbienceEvent.MinimumTimeToNextAmbience, NextAmbienceEvent.MaximumTimeToNextAmbience) * cooldownMultiplier;
+
+            DebugLogger.LogWarning($"Picked next ambience event: {NextAmbienceEvent.Name}");
         }
 
         public void Update(float dt)
@@ -75,7 +76,7 @@ namespace SPTBattleAmbience.Managers
 
             BattleAmbienceController.Instance.StartCoroutine(PerformAmbience(sequence, mapConfig, soundSpawnPoint));
 
-            ChooseNextAmbience();
+            ChooseNextAmbience(mapConfig.AmbienceEventCooldownMultiplier.Value);
         }
 
         private IEnumerator PerformAmbience(BattleSoundSequence sequence, MapConfigBase mapConfig, Vector3 position)
