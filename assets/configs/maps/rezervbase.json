@@ -49,6 +49,25 @@
           "maximumTimeToNextAmbience": 90
         }
       }
+    },
+    "vehicleEvents": {
+      "category": "vehicles",
+      "eventConfigs": {
+        "helicopter": {
+          "soundTypes": [ "helicopter" ],
+          "usePlayerDirection": true,
+          "minimumSoundTypes": 1,
+          "maximumSoundTypes": 1,
+          "minimumSoundCount": 1,
+          "maximumSoundCount": 1,
+          "minimumVolume": 0.4,
+          "maximumVolume": 0.8,
+          "minimumTimeToNextAmbience": 600,
+          "maximumTimeToNextAmbience": 900,
+          "minimumTimeFromRaidStart": 120,
+          "maximumTimeFromRaidStart": 600
+        }
+      }
     }
   }
 }

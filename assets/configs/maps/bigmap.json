@@ -7,8 +7,8 @@
           "usePlayerDirection": true,
           "minimumSoundTypes": 1,
           "maximumSoundTypes": 2,
-          "minimumSoundCount": 10,
-          "maximumSoundCount": 25,
+          "minimumSoundCount": 4,
+          "maximumSoundCount": 8,
           "minimumSoundGap": 0.5,
           "maximumSoundGap": 3,
           "minimumVolume": 0.3,
@@ -21,13 +21,13 @@
           "minimumSoundTypes": 2,
           "maximumSoundTypes": 4,
           "minimumSoundCount": 10,
-          "maximumSoundCount": 25,
+          "maximumSoundCount": 20,
           "minimumSoundGap": 0.5,
           "maximumSoundGap": 2,
           "minimumVolume": 0.5,
-          "maximumVolume": 1,
+          "maximumVolume": 0.8,
           "minimumTimeToNextAmbience": 60,
-          "maximumTimeToNextAmbience": 120,
+          "maximumTimeToNextAmbience": 180,
           "timeRestriction": "day"
         }
       }
@@ -45,8 +45,27 @@
           "maximumSoundGap": 7,
           "minimumVolume": 0.5,
           "maximumVolume": 1,
-          "minimumTimeToNextAmbience": 30,
-          "maximumTimeToNextAmbience": 90
+          "minimumTimeToNextAmbience": 150,
+          "maximumTimeToNextAmbience": 400
+        }
+      }
+    },
+    "vehicleEvents": {
+      "category": "vehicles",
+      "eventConfigs": {
+        "helicopter": {
+          "soundTypes": [ "helicopter" ],
+          "usePlayerDirection": true,
+          "minimumSoundTypes": 1,
+          "maximumSoundTypes": 1,
+          "minimumSoundCount": 1,
+          "maximumSoundCount": 1,
+          "minimumVolume": 0.4,
+          "maximumVolume": 0.8,
+          "minimumTimeToNextAmbience": 300,
+          "maximumTimeToNextAmbience": 900,
+          "minimumTimeFromRaidStart": 120,
+          "maximumTimeFromRaidStart": 600
         }
       }
     }

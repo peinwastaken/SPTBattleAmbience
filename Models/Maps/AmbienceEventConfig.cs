@@ -11,6 +11,12 @@ namespace SPTBattleAmbience.Models.Maps
         [JsonProperty("usePlayerDirection")]
         public bool UsePlayerDirection { get; set; } = true;
 
+        [JsonProperty("soundDistance")]
+        public float SoundDistance { get; set; } = 0;
+
+        [JsonProperty("soundRolloff")]
+        public int SoundRolloff { get; set; } = 0;
+
         [JsonProperty("soundTypes")]
         public string[] SoundTypes { get; set; } = [];
 

@@ -15,20 +15,6 @@
           "maximumVolume": 0.8,
           "minimumTimeToNextAmbience": 30,
           "maximumTimeToNextAmbience": 90
-        },
-        "intenseFirefight": {
-          "usePlayerDirection": true,
-          "minimumSoundTypes": 2,
-          "maximumSoundTypes": 4,
-          "minimumSoundCount": 10,
-          "maximumSoundCount": 25,
-          "minimumSoundGap": 0.5,
-          "maximumSoundGap": 2,
-          "minimumVolume": 0.5,
-          "maximumVolume": 1,
-          "minimumTimeToNextAmbience": 60,
-          "maximumTimeToNextAmbience": 120,
-          "timeRestriction": "day"
         }
       }
     },

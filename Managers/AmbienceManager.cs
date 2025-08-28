@@ -1,6 +1,5 @@
 ﻿using Comfort.Common;
 using EFT;
-using HarmonyLib;
 using PeinRecoilRework.Helpers;
 using SPTBattleAmbience.Config;
 using SPTBattleAmbience.Config.General;
@@ -23,11 +22,18 @@ namespace SPTBattleAmbience.Managers
         public float TimeSinceLastEvent = 0f;
         public float NextEventTime = 0f;
 
-        public void ChooseNextAmbience(float cooldownMultiplier = 1f)
+        public void ChooseNextAmbience(float cooldownMultiplier = 1f, bool raidJustStarted = false)
         {
             NextAmbienceEvent = EventConfigGroup.GetRandomEventConfig();
             TimeSinceLastEvent = 0f;
-            NextEventTime = Random.Range(NextAmbienceEvent.MinimumTimeToNextAmbience, NextAmbienceEvent.MaximumTimeToNextAmbience) * cooldownMultiplier;
+            if (raidJustStarted)
+            {
+                NextEventTime = Random.Range(NextAmbienceEvent.MinimumTimeFromRaidStart, NextAmbienceEvent.MaximumTimeFromRaidStart) * cooldownMultiplier;
+            }
+            else
+            {
+                NextEventTime = Random.Range(NextAmbienceEvent.MinimumTimeToNextAmbience, NextAmbienceEvent.MaximumTimeToNextAmbience) * cooldownMultiplier;
+            }
 
             DebugLogger.LogWarning($"Picked next ambience event: {NextAmbienceEvent.Name}");
         }
@@ -44,6 +50,14 @@ namespace SPTBattleAmbience.Managers
 
         public void TriggerAmbience()
         {
+            if (NextAmbienceEvent == null)
+            {
+                DebugLogger.LogError("NextAmbienceEvent is null. Skipping and waiting...");
+                TimeSinceLastEvent = 0f;
+                NextEventTime = 60f;
+                return;
+            }
+
             Player mainPlayer = GameWorldHelper.GetLocalPlayer();
             string mapId = mainPlayer.Location;
             MapConfigBase mapConfig = ConfigHelper.GetMapConfig(mapId);
@@ -67,19 +81,23 @@ namespace SPTBattleAmbience.Managers
             }
             else
             {
-                soundSpawnPoint = mainPlayer.Position + Utils.RandomVector.WithY(0) * Random.Range(100, 500);
+                float soundDistance = NextAmbienceEvent.SoundDistance > 0 ? NextAmbienceEvent.SoundDistance : Random.Range(100, 500);
+
+                soundSpawnPoint = mainPlayer.Position + Utils.RandomVector.WithY(0) * soundDistance;
             }
 
-            DebugLogger.LogWarning($"Triggering ambience for map: {mapId} | Position {soundSpawnPoint}");
+            int rolloff = NextAmbienceEvent.SoundRolloff > 0 ? NextAmbienceEvent.SoundRolloff : GeneralConfig.AmbientRolloff.Value;
+
+            DebugLogger.LogWarning($"Triggering ambience for map: {mapId} | Event id: {NextAmbienceEvent.Name} | Position {soundSpawnPoint}");
 
             BattleSoundSequence sequence = GenerateSequence(NextAmbienceEvent);
 
-            BattleAmbienceController.Instance.StartCoroutine(PerformAmbience(sequence, mapConfig, soundSpawnPoint));
+            BattleAmbienceController.Instance.StartCoroutine(PerformAmbience(sequence, mapConfig, soundSpawnPoint, rolloff));
 
             ChooseNextAmbience(mapConfig.AmbienceEventCooldownMultiplier.Value);
         }
 
-        private IEnumerator PerformAmbience(BattleSoundSequence sequence, MapConfigBase mapConfig, Vector3 position)
+        private IEnumerator PerformAmbience(BattleSoundSequence sequence, MapConfigBase mapConfig, Vector3 position, int rolloff)
         {
             DebugLogger.LogWarning("Starting ambience sequence");
 
@@ -97,7 +115,7 @@ namespace SPTBattleAmbience.Managers
                     position,
                     clipInfo.Key,
                     GeneralConfig.AudioSourceGroup.Value,
-                    GeneralConfig.AmbientRolloff.Value,
+                    rolloff,
                     volume,
                     GeneralConfig.OcclusionTestMode.Value,
                     null,

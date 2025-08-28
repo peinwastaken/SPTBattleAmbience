@@ -31,6 +31,11 @@ namespace SPTBattleAmbience.Models.Maps
                 }
             }
 
+            if (validConfigs.Count == 0)
+            {
+                return null;
+            }
+
             return validConfigs.PickRandom();
         }
     }

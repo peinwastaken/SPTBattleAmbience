@@ -1,4 +1,5 @@
 ﻿using PeinRecoilRework.Helpers;
+using SPTBattleAmbience.Config;
 using SPTBattleAmbience.Helpers;
 using SPTBattleAmbience.Managers;
 using SPTBattleAmbience.Models.Maps;
@@ -44,11 +45,13 @@ namespace SPTBattleAmbience.Controllers
                 return;
             }
 
+            MapConfigBase mapConfig = ConfigHelper.GetMapConfig(mapId);
+
             foreach (KeyValuePair<string, AmbienceEventConfigGroup> kvp in mapEvents.AmbienceEventGroups)
             {
                 AmbienceManager ambienceTimer = new AmbienceManager();
                 ambienceTimer.EventConfigGroup = kvp.Value;
-                ambienceTimer.ChooseNextAmbience();
+                ambienceTimer.ChooseNextAmbience(1f, true);
 
                 AmbienceManagers.Add(ambienceTimer);
             }
