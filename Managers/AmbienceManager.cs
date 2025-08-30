@@ -21,7 +21,7 @@ namespace SPTBattleAmbience.Managers
         public AmbienceEventConfig NextAmbienceEvent = null;
         public float TimeSinceLastEvent = 0f;
         public float NextEventTime = 0f;
-
+        
         public void ChooseNextAmbience(float cooldownMultiplier = 1f, bool raidJustStarted = false)
         {
             NextAmbienceEvent = EventConfigGroup.GetRandomEventConfig();
@@ -37,7 +37,7 @@ namespace SPTBattleAmbience.Managers
 
             DebugLogger.LogWarning($"Picked next ambience event: {NextAmbienceEvent.Name}");
         }
-
+        
         public void Update(float dt)
         {
             TimeSinceLastEvent += dt;
@@ -57,7 +57,7 @@ namespace SPTBattleAmbience.Managers
                 NextEventTime = 60f;
                 return;
             }
-
+            
             Player mainPlayer = GameWorldHelper.GetLocalPlayer();
             string mapId = GameWorldHelper.GetCurrentMapId();
             MapConfigBase mapConfig = ConfigHelper.GetMapConfig(mapId);
@@ -69,7 +69,7 @@ namespace SPTBattleAmbience.Managers
                 NextEventTime = Random.Range(60, 120);
                 return;
             }
-
+            
             Vector3 soundSpawnPoint;
             if (mapConfig.UsePlayerDirection.Value && NextAmbienceEvent.UsePlayerDirection)
             {

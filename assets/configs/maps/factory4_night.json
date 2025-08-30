@@ -7,14 +7,14 @@
           "usePlayerDirection": true,
           "minimumSoundTypes": 1,
           "maximumSoundTypes": 2,
-          "minimumSoundCount": 10,
-          "maximumSoundCount": 25,
+          "minimumSoundCount": 5,
+          "maximumSoundCount": 15,
           "minimumSoundGap": 0.5,
           "maximumSoundGap": 3,
           "minimumVolume": 0.3,
           "maximumVolume": 0.8,
-          "minimumTimeToNextAmbience": 30,
-          "maximumTimeToNextAmbience": 90
+          "minimumTimeToNextAmbience": 60,
+          "maximumTimeToNextAmbience": 180
         }
       }
     },
@@ -31,8 +31,8 @@
           "maximumSoundGap": 7,
           "minimumVolume": 0.5,
           "maximumVolume": 1,
-          "minimumTimeToNextAmbience": 30,
-          "maximumTimeToNextAmbience": 90
+          "minimumTimeToNextAmbience": 180,
+          "maximumTimeToNextAmbience": 480
         }
       }
     }

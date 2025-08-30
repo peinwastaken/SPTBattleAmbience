@@ -14,12 +14,8 @@ namespace SPTBattleAmbience.Helpers
 
         public static AmbienceEvents GetMapAmbienceEvents(string mapName)
         {
-            if (MapAmbienceEvents.ContainsKey(mapName))
-            {
-                return MapAmbienceEvents[mapName];
-            }
-
-            return null;
+            MapAmbienceEvents.TryGetValue(mapName, out AmbienceEvents ambienceEvents);
+            return ambienceEvents;
         }
     }
 }

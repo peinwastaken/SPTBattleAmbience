@@ -1,5 +1,4 @@
-﻿using PeinRecoilRework.Helpers;
-using SPTBattleAmbience.Config;
+using PeinRecoilRework.Helpers;
 using SPTBattleAmbience.Helpers;
 using SPTBattleAmbience.Managers;
 using SPTBattleAmbience.Models.Maps;
@@ -44,8 +43,6 @@ namespace SPTBattleAmbience.Controllers
                 DebugLogger.LogWarning($"Ambient events not found for map {mapId}");
                 return;
             }
-
-            MapConfigBase mapConfig = ConfigHelper.GetMapConfig(mapId);
 
             foreach (KeyValuePair<string, AmbienceEventConfigGroup> kvp in mapEvents.AmbienceEventGroups)
             {
