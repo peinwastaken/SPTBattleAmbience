@@ -58,6 +58,11 @@ namespace SPTBattleAmbience.Controllers
 
         public void OnGameEnded()
         {
+            if(AmbienceManagers == null)
+            {
+                DebugLogger.LogWarning("Ambient Managers List Null");
+                return;
+            }
             AmbienceManagers.Clear();
 
             _gameStarted = false;
