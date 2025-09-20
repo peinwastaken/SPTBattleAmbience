@@ -22,7 +22,7 @@ namespace SPTBattleAmbience.Helpers
         {
             MapConfigs["bigmap"] = new MapConfigBase(config, new MapConfigStruct
             {
-                ConfigOrder = 5,
+                ConfigOrder = 1,
                 ConfigCategory = Category.Customs,
                 MinVolumeMultiplier = 0.7f,
                 MaxVolumeMultiplier = 1f,
@@ -34,7 +34,7 @@ namespace SPTBattleAmbience.Helpers
 
             MapConfigs["factory4_day"] = new MapConfigBase(config, new MapConfigStruct
             {
-                ConfigOrder = 6,
+                ConfigOrder = 2,
                 ConfigCategory = Category.Factory,
                 MinVolumeMultiplier = 1f,
                 MaxVolumeMultiplier = 1.5f,
@@ -47,7 +47,7 @@ namespace SPTBattleAmbience.Helpers
 
             MapConfigs["woods"] = new MapConfigBase(config, new MapConfigStruct
             {
-                ConfigOrder = 7,
+                ConfigOrder = 3,
                 ConfigCategory = Category.Woods,
                 MinVolumeMultiplier = 0.7f,
                 MaxVolumeMultiplier = 1f,
@@ -59,7 +59,7 @@ namespace SPTBattleAmbience.Helpers
 
             MapConfigs["shoreline"] = new MapConfigBase(config, new MapConfigStruct
             {
-                ConfigOrder = 8,
+                ConfigOrder = 4,
                 ConfigCategory = Category.Shoreline,
                 MinVolumeMultiplier = 0.7f,
                 MaxVolumeMultiplier = 1f,
@@ -71,7 +71,7 @@ namespace SPTBattleAmbience.Helpers
 
             MapConfigs["interchange"] = new MapConfigBase(config, new MapConfigStruct
             {
-                ConfigOrder = 9,
+                ConfigOrder = 5,
                 ConfigCategory = Category.Interchange,
                 MinVolumeMultiplier = 0.7f,
                 MaxVolumeMultiplier = 1f,
@@ -83,7 +83,7 @@ namespace SPTBattleAmbience.Helpers
 
             MapConfigs["lighthouse"] = new MapConfigBase(config, new MapConfigStruct
             {
-                ConfigOrder = 10,
+                ConfigOrder = 6,
                 ConfigCategory = Category.Lighthouse,
                 MinVolumeMultiplier = 0.7f,
                 MaxVolumeMultiplier = 1f,
@@ -95,7 +95,7 @@ namespace SPTBattleAmbience.Helpers
 
             MapConfigs["rezervbase"] = new MapConfigBase(config, new MapConfigStruct
             {
-                ConfigOrder = 11,
+                ConfigOrder = 7,
                 ConfigCategory = Category.Reserve,
                 MinVolumeMultiplier = 0.7f,
                 MaxVolumeMultiplier = 1f,
@@ -107,7 +107,7 @@ namespace SPTBattleAmbience.Helpers
 
             MapConfigs["tarkovstreets"] = new MapConfigBase(config, new MapConfigStruct
             {
-                ConfigOrder = 12,
+                ConfigOrder = 8,
                 ConfigCategory = Category.Streets,
                 MinVolumeMultiplier = 0.7f,
                 MaxVolumeMultiplier = 1f,
@@ -119,7 +119,7 @@ namespace SPTBattleAmbience.Helpers
 
             MapConfigs["sandbox"] = new MapConfigBase(config, new MapConfigStruct
             {
-                ConfigOrder = 13,
+                ConfigOrder = 9,
                 ConfigCategory = Category.GroundZero,
                 MinVolumeMultiplier = 0.7f,
                 MaxVolumeMultiplier = 1f,
@@ -132,7 +132,7 @@ namespace SPTBattleAmbience.Helpers
 
             MapConfigs["laboratory"] = new MapConfigBase(config, new MapConfigStruct
             {
-                ConfigOrder = 14,
+                ConfigOrder = 10,
                 ConfigCategory = Category.Labs,
                 MinVolumeMultiplier = 0.7f,
                 MaxVolumeMultiplier = 1f,
