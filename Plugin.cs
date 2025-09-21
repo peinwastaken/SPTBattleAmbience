@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace SPTBattleAmbience
 {
-    [BepInPlugin("com.pein.battleambience", "SPTBattleAmbience", "2.0.2")]
+    [BepInPlugin("com.pein.battleambience", "SPTBattleAmbience", "2.1.0")]
     public class Plugin : BaseUnityPlugin
     {
         public static new ManualLogSource Logger;
