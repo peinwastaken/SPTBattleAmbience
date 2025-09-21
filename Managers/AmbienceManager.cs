@@ -24,8 +24,11 @@ namespace SPTBattleAmbience.Managers
         
         public void ChooseNextAmbience(float cooldownMultiplier = 1f, bool raidJustStarted = false)
         {
-            NextAmbienceEvent = EventConfigGroup.GetRandomEventConfig();
+            bool useWeight = GeneralConfig.UseEventConfigWeights.Value;
+            
+            NextAmbienceEvent = EventConfigGroup.GetRandomEventConfig(useWeight);
             TimeSinceLastEvent = 0f;
+            
             if (raidJustStarted)
             {
                 NextEventTime = Random.Range(NextAmbienceEvent.MinimumTimeFromRaidStart, NextAmbienceEvent.MaximumTimeFromRaidStart) * cooldownMultiplier;

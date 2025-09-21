@@ -2,6 +2,7 @@
 using SPTBattleAmbience.Data.Enum;
 using SPTBattleAmbience.Utility;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace SPTBattleAmbience.Models.Maps
 {
@@ -34,6 +35,34 @@ namespace SPTBattleAmbience.Models.Maps
             if (validConfigs.Count == 0)
             {
                 return null;
+            }
+
+            if (useWeight)
+            {
+                float totalWeight = 0f;
+
+                foreach (AmbienceEventConfig config in validConfigs)
+                {
+                    totalWeight += config.Weight;
+                }
+
+                // never happens because weight defaults to 1, but better safe than sorry
+                if (totalWeight == 0)
+                {
+                    return validConfigs.PickRandom();
+                }
+                
+                float roll = Random.Range(0f, totalWeight);
+                float cumulativeWeight = 0f;
+                
+                foreach (AmbienceEventConfig config in validConfigs)
+                {
+                    cumulativeWeight += config.Weight;
+                    if (roll <= cumulativeWeight)
+                    {
+                        return config;
+                    }
+                }
             }
 
             return validConfigs.PickRandom();

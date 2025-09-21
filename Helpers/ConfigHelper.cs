@@ -29,7 +29,8 @@ namespace SPTBattleAmbience.Helpers
                 AmbienceEventCooldownMultiplier = 1f,
                 EnableEvents = true,
                 MapCenter = new Vector3(190f, 0, -15f),
-                MapRadius = 700f
+                MapRadius = 700f,
+                UsePlayerDirection = true
             });
 
             MapConfigs["factory4_day"] = new MapConfigBase(config, new MapConfigStruct
@@ -41,7 +42,8 @@ namespace SPTBattleAmbience.Helpers
                 AmbienceEventCooldownMultiplier = 0.8f,
                 EnableEvents = true,
                 MapCenter = new Vector3(20f, 0, 5f),
-                MapRadius = 300f
+                MapRadius = 300f,
+                UsePlayerDirection = true
             });
             MapConfigs["factory4_night"] = MapConfigs["factory4_day"];
 
@@ -54,7 +56,8 @@ namespace SPTBattleAmbience.Helpers
                 AmbienceEventCooldownMultiplier = 1.3f,
                 EnableEvents = true,
                 MapCenter = new Vector3(-30f, 0, -200f),
-                MapRadius = 1100f
+                MapRadius = 1100f,
+                UsePlayerDirection = true
             });
 
             MapConfigs["shoreline"] = new MapConfigBase(config, new MapConfigStruct
@@ -66,7 +69,8 @@ namespace SPTBattleAmbience.Helpers
                 AmbienceEventCooldownMultiplier = 1f,
                 EnableEvents = true,
                 MapCenter = new Vector3(-215f, 0, 165f),
-                MapRadius = 1000f
+                MapRadius = 1000f,
+                UsePlayerDirection = true
             });
 
             MapConfigs["interchange"] = new MapConfigBase(config, new MapConfigStruct
@@ -78,7 +82,8 @@ namespace SPTBattleAmbience.Helpers
                 AmbienceEventCooldownMultiplier = 0.8f,
                 EnableEvents = true,
                 MapCenter = new Vector3(95f, 0, -55f),
-                MapRadius = 650f
+                MapRadius = 650f,
+                UsePlayerDirection = true
             });
 
             MapConfigs["lighthouse"] = new MapConfigBase(config, new MapConfigStruct
@@ -90,7 +95,8 @@ namespace SPTBattleAmbience.Helpers
                 AmbienceEventCooldownMultiplier = 0.9f,
                 EnableEvents = true,
                 MapCenter = new Vector3(-15, 0, -185),
-                MapRadius = 1200f
+                MapRadius = 1200f,
+                UsePlayerDirection = true
             });
 
             MapConfigs["rezervbase"] = new MapConfigBase(config, new MapConfigStruct
@@ -102,7 +108,8 @@ namespace SPTBattleAmbience.Helpers
                 AmbienceEventCooldownMultiplier = 1f,
                 EnableEvents = true,
                 MapCenter = new Vector3(-30f, 0, -25f),
-                MapRadius = 600f
+                MapRadius = 600f,
+                UsePlayerDirection = true
             });
 
             MapConfigs["tarkovstreets"] = new MapConfigBase(config, new MapConfigStruct
@@ -114,7 +121,8 @@ namespace SPTBattleAmbience.Helpers
                 AmbienceEventCooldownMultiplier = 0.6f,
                 EnableEvents = true,
                 MapCenter = new Vector3(30f, 0, 155f),
-                MapRadius = 700f
+                MapRadius = 700f,
+                UsePlayerDirection = true
             });
 
             MapConfigs["sandbox"] = new MapConfigBase(config, new MapConfigStruct
@@ -126,7 +134,8 @@ namespace SPTBattleAmbience.Helpers
                 AmbienceEventCooldownMultiplier = 0.5f,
                 EnableEvents = true,
                 MapCenter = new Vector3(0, 0, 0),
-                MapRadius = 800f
+                MapRadius = 800f,
+                UsePlayerDirection = true
             });
             MapConfigs["sandbox_high"] = MapConfigs["sandbox"];
 
@@ -139,7 +148,8 @@ namespace SPTBattleAmbience.Helpers
                 AmbienceEventCooldownMultiplier = 1f,
                 EnableEvents = false,
                 MapCenter = new Vector3(0, 0, 0),
-                MapRadius = 1000f
+                MapRadius = 1000f,
+                UsePlayerDirection = true,
             });
 
             DebugLogger.LogWarning($"Initialized {MapConfigs.Count} map configs");
