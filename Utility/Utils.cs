@@ -1,4 +1,5 @@
-﻿using SPTBattleAmbience.Data.Enum;
+﻿using System.Collections.Generic;
+using SPTBattleAmbience.Data.Enum;
 using SPTBattleAmbience.Helpers;
 using UnityEngine;
 
@@ -57,6 +58,36 @@ namespace SPTBattleAmbience.Utility
             bool isDayTime = IsDayTime();
 
             return isDayTime ? ETimeRestriction.Day : ETimeRestriction.Night;
+        }
+
+        public static T PickRandomWeighed<T>(this Dictionary<T, float> dictionary)
+        {
+            float totalWeight = 0f;
+
+            foreach (KeyValuePair<T, float> kvp in dictionary)
+            {
+                totalWeight += kvp.Value;
+
+            }
+            
+            if (totalWeight <= 0)
+            {
+                return dictionary.Keys.PickRandom();
+            }
+                
+            float roll = Random.Range(0f, totalWeight);
+            float cumulative = 0f;
+                
+            foreach (KeyValuePair<T, float> kvp in dictionary)
+            {
+                cumulative += kvp.Value;
+                if (roll <= cumulative)
+                {
+                    return kvp.Key;
+                }
+            }
+
+            return dictionary.Keys.PickRandom();
         }
     }
 }

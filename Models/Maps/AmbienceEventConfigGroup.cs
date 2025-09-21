@@ -39,30 +39,14 @@ namespace SPTBattleAmbience.Models.Maps
 
             if (useWeight)
             {
-                float totalWeight = 0f;
-
-                foreach (AmbienceEventConfig config in validConfigs)
-                {
-                    totalWeight += config.Weight;
-                }
-
-                // never happens because weight defaults to 1, but better safe than sorry
-                if (totalWeight == 0)
-                {
-                    return validConfigs.PickRandom();
-                }
-                
-                float roll = Random.Range(0f, totalWeight);
-                float cumulativeWeight = 0f;
+                Dictionary<AmbienceEventConfig, float> weighedEvents = [];
                 
                 foreach (AmbienceEventConfig config in validConfigs)
                 {
-                    cumulativeWeight += config.Weight;
-                    if (roll <= cumulativeWeight)
-                    {
-                        return config;
-                    }
+                    weighedEvents.Add(config, config.Weight);
                 }
+
+                return weighedEvents.PickRandomWeighed();
             }
 
             return validConfigs.PickRandom();
