@@ -97,7 +97,7 @@ namespace SPTBattleAmbience.Managers
 
             BattleAmbienceController.Instance.StartCoroutine(PerformAmbience(sequence, mapConfig, soundSpawnPoint, rolloff));
 
-            ChooseNextAmbience(mapConfig.AmbienceEventCooldownMultiplier.Value);
+            ChooseNextAmbience(mapConfig.AmbienceEventCooldownMultiplier.Value * GeneralConfig.GlobalAmbientCooldownMult.Value);
         }
 
         private IEnumerator PerformAmbience(BattleSoundSequence sequence, MapConfigBase mapConfig, Vector3 position, int rolloff)
