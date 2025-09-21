@@ -67,7 +67,6 @@ namespace SPTBattleAmbience.Utility
             foreach (KeyValuePair<T, float> kvp in dictionary)
             {
                 totalWeight += kvp.Value;
-
             }
             
             if (totalWeight <= 0)
