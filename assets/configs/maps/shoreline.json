@@ -49,6 +49,28 @@
           "maximumTimeToNextAmbience": 900
         }
       }
+    },
+    "wildlifeEvents": {
+      "category": "wildlife",
+      "eventConfigs": {
+        "wolfHowling": {
+          "usePlayerDirection": false,
+          "soundTypes": ["wolf"],
+          "minimumSoundTypes": 1,
+          "maximumSoundTypes": 1,
+          "minimumSoundCount": 2,
+          "maximumSoundCount": 4,
+          "minimumSoundGap": 30,
+          "maximumSoundGap": 60,
+          "minimumVolume": 0.5,
+          "maximumVolume": 0.8,
+          "minimumTimeToNextAmbience": 600,
+          "maximumTimeToNextAmbience": 1200,
+          "minimumTimeFromRaidStart": 180,
+          "maximumTimeFromRaidStart": 1200,
+          "timeRestriction": "night"
+        }
+      }
     }
   }
 }
