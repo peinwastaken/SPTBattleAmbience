@@ -50,22 +50,22 @@
         }
       }
     },
-    "wildlifeEvents": {
+    "animalEvents": {
       "category": "wildlife",
       "eventConfigs": {
-        "wolfHowling": {
-          "usePlayerDirection": false,
-          "soundTypes": ["wolf"],
+        "wolf": {
+          "soundTypes": [ "wolf" ],
+          "usePlayerDirection": true,
           "minimumSoundTypes": 1,
           "maximumSoundTypes": 1,
           "minimumSoundCount": 2,
           "maximumSoundCount": 4,
-          "minimumSoundGap": 30,
-          "maximumSoundGap": 60,
-          "minimumVolume": 0.5,
-          "maximumVolume": 0.8,
-          "minimumTimeToNextAmbience": 600,
-          "maximumTimeToNextAmbience": 1200,
+          "minimumSoundGap": 10,
+          "maximumSoundGap": 20,
+          "minimumVolume": 0.6,
+          "maximumVolume": 1.0,
+          "minimumTimeToNextAmbience": 1200,
+          "maximumTimeToNextAmbience": 3000,
           "minimumTimeFromRaidStart": 180,
           "maximumTimeFromRaidStart": 1200,
           "timeRestriction": "night"

@@ -5,6 +5,6 @@ namespace SPTBattleAmbience.Models
 {
     public class BattleSoundSequence
     {
-        public List<KeyValuePair<AudioClip, float>> AudioClips = [];
+        public List<BattleSoundEntry> AudioClips = [];
     }
 }

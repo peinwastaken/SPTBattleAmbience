@@ -110,13 +110,13 @@ namespace SPTBattleAmbience.Managers
 
             DebugLogger.LogWarning($"Calculated ambience volume: {volume} (Map Mult: {mapVolumeMult}, Global Mult: {globalMult})");
 
-            foreach (KeyValuePair<AudioClip, float> clipInfo in sequence.AudioClips)
+            foreach (BattleSoundEntry clipInfo in sequence.AudioClips)
             {
-                DebugLogger.LogWarning($"Playing ambience clip: {clipInfo.Key.name} and waiting for: {clipInfo.Value} seconds.");
+                DebugLogger.LogWarning($"Playing ambience clip: {clipInfo.AudioClip.name} and waiting for: {clipInfo.TimeToNextClip} seconds.");
 
                 Singleton<BetterAudio>.Instance.PlayAtPoint(
                     position,
-                    clipInfo.Key,
+                    clipInfo.AudioClip,
                     GeneralConfig.AudioSourceGroup.Value,
                     rolloff,
                     volume,
@@ -126,7 +126,7 @@ namespace SPTBattleAmbience.Managers
                     true
                 );
 
-                yield return new WaitForSeconds(clipInfo.Value);
+                yield return new WaitForSeconds(clipInfo.TimeToNextClip);
             }
         }
 
@@ -184,7 +184,7 @@ namespace SPTBattleAmbience.Managers
             DebugLogger.LogWarning($"minGap: {minGap} | maxGap: {maxGap}");
 
             List<AudioClip> availableClips = [];
-            List<KeyValuePair<AudioClip, float>> selectedClips = [];
+            List<BattleSoundEntry> selectedClips = [];
 
             foreach (string soundType in soundTypes)
             {
@@ -213,7 +213,11 @@ namespace SPTBattleAmbience.Managers
                 AudioClip clip = availableClips[Random.Range(0, availableClips.Count)];
                 float timeToNextClip = Random.Range(minGap, maxGap);
 
-                selectedClips.Add(new KeyValuePair<AudioClip, float>(clip, timeToNextClip));
+                selectedClips.Add(new BattleSoundEntry()
+                {
+                    AudioClip = clip,
+                    TimeToNextClip = timeToNextClip
+                });
             }
 
             return new BattleSoundSequence()
