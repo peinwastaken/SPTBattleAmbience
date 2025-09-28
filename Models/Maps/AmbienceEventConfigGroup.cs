@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PeinRecoilRework.Helpers;
 using SPTBattleAmbience.Data.Enum;
 using SPTBattleAmbience.Utility;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace SPTBattleAmbience.Models.Maps
             foreach (AmbienceEventConfig config in EventConfigs.Values)
             {
                 ETimeRestriction configTimeRestriction = config.TimeRestriction;
+                DebugLogger.LogError(configTimeRestriction.ToString());
 
                 if (configTimeRestriction == currentTimeRestriction || configTimeRestriction == ETimeRestriction.Always)
                 {
@@ -34,6 +36,7 @@ namespace SPTBattleAmbience.Models.Maps
 
             if (validConfigs.Count == 0)
             {
+                DebugLogger.LogWarning($"No ambient event found for current time restriction: {currentTimeRestriction}");
                 return null;
             }
 
