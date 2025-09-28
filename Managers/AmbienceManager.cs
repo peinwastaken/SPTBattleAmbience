@@ -31,7 +31,7 @@ namespace SPTBattleAmbience.Managers
             
             if (NextAmbienceEvent == null)
             {
-                DebugLogger.LogError("couldnt get random event. skipping...");
+                DebugLogger.LogError($"couldnt get random event for category {EventConfigGroup.Category} . skipping...");
                 TimeSinceLastEvent = 0f;
                 NextEventTime = 60f;
                 return;
