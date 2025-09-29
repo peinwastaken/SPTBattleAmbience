@@ -63,7 +63,9 @@ namespace SPTBattleAmbience.Controllers
                 DebugLogger.LogWarning("Ambient Managers List Null");
                 return;
             }
+            
             AmbienceManagers.Clear();
+            StopAllCoroutines();
 
             _gameStarted = false;
         }
