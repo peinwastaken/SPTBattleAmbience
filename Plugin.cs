@@ -45,9 +45,9 @@ namespace SPTBattleAmbience
 
         public void CreateAmbienceController()
         {
-            GameObject gameObject = new GameObject("BattleAmbienceController");
-            gameObject.AddComponent<BattleAmbienceController>();
-            DontDestroyOnLoad(gameObject);
+            GameObject controllerObject = new GameObject("BattleAmbienceController");
+            controllerObject.AddComponent<BattleAmbienceController>();
+            DontDestroyOnLoad(controllerObject);
         }
 
         public static async void LoadAmbientSoundCategories()

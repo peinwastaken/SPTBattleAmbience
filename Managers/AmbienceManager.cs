@@ -4,6 +4,7 @@ using PeinRecoilRework.Helpers;
 using SPTBattleAmbience.Config;
 using SPTBattleAmbience.Config.General;
 using SPTBattleAmbience.Controllers;
+using SPTBattleAmbience.Data;
 using SPTBattleAmbience.Helpers;
 using SPTBattleAmbience.Models;
 using SPTBattleAmbience.Models.Maps;
@@ -118,7 +119,10 @@ namespace SPTBattleAmbience.Managers
         public void TriggerAmbience()
         {
             if (!TryPrepareAmbience(out var sequence, out var mapConfig, out var soundSpawnPoint, out var rolloff))
+            {
+                DebugLogger.LogError($"Failed to prepare ambience for category {EventConfigGroup.Category}");
                 return;
+            }
 
             DebugLogger.LogWarning($"Triggering ambience for map: {GameWorldHelper.GetCurrentMapId()} | Event id: {NextAmbienceEvent.Name} | Position {soundSpawnPoint}");
 
@@ -137,20 +141,16 @@ namespace SPTBattleAmbience.Managers
 
             DebugLogger.LogWarning($"Calculated ambience volume: {volume} (Map Mult: {mapVolumeMult}, Global Mult: {globalMult})");
 
-            foreach (BattleSoundEntry clipInfo in sequence.AudioClips)
+            foreach (BattleSoundEntry entry in sequence.AudioClips)
             {
-                DebugLogger.LogWarning($"Playing ambience clip: {clipInfo.AudioClip.name} and waiting for: {clipInfo.TimeToNextClip} seconds.");
+                ClipInfo clipInfo = entry.ClipInfo;
+                float timeToNextClip = entry.TimeToNextClip;
+                
+                DebugLogger.LogWarning($"Playing ambience clip: {clipInfo.AudioClip.name} and waiting for: {timeToNextClip} seconds.");
 
-                Singleton<BetterAudio>.Instance.PlayAtPoint(
-                    position,
-                    clipInfo.AudioClip,
-                    GeneralConfig.AudioSourceGroup.Value,
-                    rolloff,
-                    volume,
-                    GeneralConfig.OcclusionTestMode.Value
-                );
-
-                yield return new WaitForSeconds(clipInfo.TimeToNextClip);
+                AmbientHelper.PlayAmbienceSound(position, clipInfo, rolloff, volume);
+                
+                yield return new WaitForSeconds(timeToNextClip);
             }
         }
 
@@ -207,7 +207,7 @@ namespace SPTBattleAmbience.Managers
             DebugLogger.LogWarning($"minSounds: {minSounds} | maxSounds: {maxSounds}");
             DebugLogger.LogWarning($"minGap: {minGap} | maxGap: {maxGap}");
 
-            List<AudioClip> availableClips = [];
+            List<ClipInfo> availableClips = new();
             List<BattleSoundEntry> selectedClips = [];
 
             foreach (string soundType in soundTypes)
@@ -217,29 +217,31 @@ namespace SPTBattleAmbience.Managers
                     Dictionary<string, AudioClip> audioClipDict = AmbientHelper.AmbientSoundCategories[category]?.SoundTypes[soundType]?.AudioClips;
                     if (audioClipDict == null) continue;
 
-                    List<AudioClip> ambienceClips = new List<AudioClip>();
-
                     foreach (KeyValuePair<string, AudioClip> kvp in audioClipDict)
                     {
-                        ambienceClips.Add(kvp.Value);
+                        availableClips.Add(new ClipInfo()
+                        {
+                            Category = category,
+                            SoundType = soundType,
+                            AudioClip = kvp.Value,
+                            ClipName = kvp.Key
+                        });
                     }
-
-                    availableClips.AddRange(ambienceClips);
                 }
             }
-
+            
             int soundCount = Random.Range(minSounds, maxSounds + 1);
 
             for (int i = 0; i < soundCount; i++)
             {
                 if (availableClips.Count == 0) break;
 
-                AudioClip clip = availableClips[Random.Range(0, availableClips.Count)];
+                ClipInfo clipInfo = availableClips[Random.Range(0, availableClips.Count)];
                 float timeToNextClip = Random.Range(minGap, maxGap);
 
                 selectedClips.Add(new BattleSoundEntry()
                 {
-                    AudioClip = clip,
+                    ClipInfo = clipInfo,
                     TimeToNextClip = timeToNextClip
                 });
             }

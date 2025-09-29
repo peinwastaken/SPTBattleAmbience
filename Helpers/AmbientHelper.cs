@@ -1,6 +1,10 @@
-﻿using SPTBattleAmbience.Models.Maps;
+﻿using Comfort.Common;
+using SPTBattleAmbience.Config.General;
+using SPTBattleAmbience.Data;
+using SPTBattleAmbience.Models.Maps;
 using SPTBattleAmbience.Models.Sounds;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace SPTBattleAmbience.Helpers
 {
@@ -16,6 +20,18 @@ namespace SPTBattleAmbience.Helpers
         {
             MapAmbienceEvents.TryGetValue(mapName, out AmbienceEvents ambienceEvents);
             return ambienceEvents;
+        }
+
+        public static void PlayAmbienceSound(Vector3 position, ClipInfo clipInfo, int rolloff, float volume)
+        {
+            Singleton<BetterAudio>.Instance.PlayAtPoint(
+                position,
+                clipInfo.AudioClip,
+                GeneralConfig.AudioSourceGroup.Value,
+                rolloff,
+                volume,
+                GeneralConfig.OcclusionTestMode.Value
+            );
         }
     }
 }
