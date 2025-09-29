@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace SPTBattleAmbience
 {
-    [BepInPlugin("com.pein.battleambience", "SPTBattleAmbience", "2.1.0")]
+    [BepInPlugin("com.pein.battleambience", "SPTBattleAmbience", "2.2.0")]
     public class Plugin : BaseUnityPlugin
     {
         public static new ManualLogSource Logger;
@@ -26,8 +26,7 @@ namespace SPTBattleAmbience
             DebugLogger.Logger = Logger;
 
             ConfigHelper.Initialize(Config);
-
-            CreateAmbienceController();
+            
             LoadAmbientSoundCategories();
             LoadMapConfigs();
 
@@ -43,7 +42,7 @@ namespace SPTBattleAmbience
             }
         }
 
-        public void CreateAmbienceController()
+        public static void CreateAmbienceController()
         {
             GameObject controllerObject = new GameObject("BattleAmbienceController");
             controllerObject.AddComponent<BattleAmbienceController>();

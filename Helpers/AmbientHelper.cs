@@ -1,4 +1,5 @@
 ﻿using Comfort.Common;
+using PeinRecoilRework.Helpers;
 using SPTBattleAmbience.Config.General;
 using SPTBattleAmbience.Data;
 using SPTBattleAmbience.Models.Maps;
@@ -24,13 +25,18 @@ namespace SPTBattleAmbience.Helpers
 
         public static void PlayAmbienceSound(Vector3 position, ClipInfo clipInfo, int rolloff, float volume)
         {
+            DebugLogger.LogInfo($"playing sound: {clipInfo.ClipName} at position {position}");
+            
             Singleton<BetterAudio>.Instance.PlayAtPoint(
                 position,
                 clipInfo.AudioClip,
                 GeneralConfig.AudioSourceGroup.Value,
                 rolloff,
                 volume,
-                GeneralConfig.OcclusionTestMode.Value
+                GeneralConfig.OcclusionTestMode.Value,
+                null,
+                true,
+                true
             );
         }
     }

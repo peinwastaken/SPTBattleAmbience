@@ -16,6 +16,11 @@ namespace SPTBattleAmbience.Patches
         [PatchPrefix]
         private static void PatchPrefix()
         {
+            if (BattleAmbienceController.Instance == null)
+            {
+                Plugin.CreateAmbienceController();
+            }
+            
             BattleAmbienceController.Instance?.OnGameStarted();
         }
     }
