@@ -12,7 +12,7 @@ namespace SPTBattleAmbience.Helpers
 
         public static string GetCurrentMapId()
         {
-            string mapId = GetLocalPlayer()?.Location.ToLower();
+            string mapId = Singleton<GameWorld>.Instance.LocationId.ToLower();
 
             return mapId;
         }

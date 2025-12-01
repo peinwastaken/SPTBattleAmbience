@@ -101,6 +101,15 @@ namespace SPTBattleAmbience.Managers
         
         private Vector3 CalculateSpawnPoint(Player player, MapConfigBase mapConfig, AmbienceEventConfig ambienceEvent)
         {
+            if (!player) // if using headless
+            {
+                Vector3 mapCenter = mapConfig.MapCenter.Value;
+                float mapRadius = mapConfig.MapRadius.Value;
+                Vector3 randomDir = Utils.RandomVector.WithY(0).normalized;
+                Vector3 soundSpawnDir = Utils.GetVectorWithAngleOffset(randomDir, 30f);
+                return mapCenter + soundSpawnDir * mapRadius;
+            }
+
             if (mapConfig.UsePlayerDirection.Value && ambienceEvent.UsePlayerDirection)
             {
                 Vector3 mapCenter = mapConfig.MapCenter.Value;
@@ -109,11 +118,9 @@ namespace SPTBattleAmbience.Managers
                 Vector3 soundSpawnDir = Utils.GetVectorWithAngleOffset(dirToPlayerFlat, 30f);
                 return mapCenter + soundSpawnDir * mapRadius;
             }
-            else
-            {
-                float soundDistance = ambienceEvent.SoundDistance > 0 ? ambienceEvent.SoundDistance : Random.Range(100, 500);
-                return player.Position + Utils.RandomVector.WithY(0) * soundDistance;
-            }
+
+            float soundDistance = ambienceEvent.SoundDistance > 0 ? ambienceEvent.SoundDistance : Random.Range(100, 500);
+            return player.Position + Utils.RandomVector.WithY(0) * soundDistance;
         }
 
         public void TriggerAmbience()
