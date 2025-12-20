@@ -1,6 +1,5 @@
 ﻿using Comfort.Common;
 using EFT;
-using PeinRecoilRework.Helpers;
 using SPTBattleAmbience.Config;
 using SPTBattleAmbience.Config.General;
 using SPTBattleAmbience.Controllers;

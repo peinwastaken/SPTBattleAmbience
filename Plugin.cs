@@ -1,20 +1,20 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using Newtonsoft.Json;
-using PeinRecoilRework.Helpers;
 using SPTBattleAmbience.Config.General;
 using SPTBattleAmbience.Controllers;
 using SPTBattleAmbience.Helpers;
 using SPTBattleAmbience.Models.Maps;
 using SPTBattleAmbience.Models.Sounds;
 using SPTBattleAmbience.Patches;
+using SPTBattleAmbience.Utility;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
 namespace SPTBattleAmbience
 {
-    [BepInPlugin("com.pein.battleambience", "SPTBattleAmbience", "2.2.1")]
+    [BepInPlugin("com.pein.battleambience", "SPTBattleAmbience", "2.2.2")]
     public class Plugin : BaseUnityPlugin
     {
         public static new ManualLogSource Logger;
