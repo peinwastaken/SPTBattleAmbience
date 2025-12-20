@@ -3,7 +3,7 @@ using EFT;
 
 namespace SPTBattleAmbience.Helpers
 {
-    public class GameWorldHelper
+    public static class GameWorldHelper
     {
         public static Player GetLocalPlayer()
         {

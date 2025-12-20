@@ -3,7 +3,7 @@ using SPTBattleAmbience.Config.General;
 
 namespace SPTBattleAmbience.Utility
 {
-    public class DebugLogger
+    public static class DebugLogger
     {
         public static ManualLogSource Logger { get; set; }
         private static bool _isDebug => GeneralConfig.EnableDebug.Value;

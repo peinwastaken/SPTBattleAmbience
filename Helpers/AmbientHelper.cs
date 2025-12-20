@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace SPTBattleAmbience.Helpers
 {
-    public class AmbientHelper
+    public static class AmbientHelper
     {
         // assets/configs/maps/mapname.json
         public static Dictionary<string, AmbienceEvents> MapAmbienceEvents = [];

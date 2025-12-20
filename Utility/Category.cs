@@ -1,6 +1,6 @@
 ﻿namespace SPTBattleAmbience.Utility
 {
-    public class Category
+    public static class Category
     {
         public static string General = "General";
         public static string SingleShot = "Single Shot";
