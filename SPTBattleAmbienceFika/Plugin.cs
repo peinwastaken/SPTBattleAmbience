@@ -4,6 +4,7 @@ using BepInEx.Logging;
 namespace SPTBattleAmbienceFika;
 
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+[BepInDependency("com.fika.core")]
 public class Plugin : BaseUnityPlugin
 {
     internal static new ManualLogSource Logger;

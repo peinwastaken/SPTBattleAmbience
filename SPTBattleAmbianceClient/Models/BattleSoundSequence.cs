@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace SPTBattleAmbience.Models
+namespace SPTBattleAmbience.Models;
+
+public class BattleSoundSequence
 {
-    public class BattleSoundSequence
-    {
-        public List<BattleSoundEntry> AudioClips = [];
-    }
+    public List<BattleSoundEntry> AudioClips = [];
 }

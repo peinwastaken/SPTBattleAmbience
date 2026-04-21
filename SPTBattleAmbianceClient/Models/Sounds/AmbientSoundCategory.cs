@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace SPTBattleAmbience.Models.Sounds
+namespace SPTBattleAmbience.Models.Sounds;
+
+public class AmbientSoundCategory
 {
-    public class AmbientSoundCategory
-    {
-        public Dictionary<string, AmbientSounds> SoundTypes = [];
-    }
+    public Dictionary<string, AmbientSounds> SoundTypes = [];
 }

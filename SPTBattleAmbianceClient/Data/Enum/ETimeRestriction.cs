@@ -1,13 +1,12 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace SPTBattleAmbience.Data.Enum
+namespace SPTBattleAmbience.Data.Enum;
+
+[JsonConverter(typeof(StringEnumConverter))]
+public enum ETimeRestriction
 {
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum ETimeRestriction
-    {
-        Always,
-        Day,
-        Night
-    }
+    Always,
+    Day,
+    Night
 }

@@ -3,11 +3,10 @@ using Newtonsoft.Json.Serialization;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SPTBattleAmbience.Models.Maps
+namespace SPTBattleAmbience.Models.Maps;
+
+public class AmbienceEvents
 {
-    public class AmbienceEvents
-    {
-        [JsonProperty("ambienceEvents")]
-        public Dictionary<string, AmbienceEventConfigGroup> AmbienceEventGroups = [];
-    }
+    [JsonProperty("ambienceEvents")]
+    public Dictionary<string, AmbienceEventConfigGroup> AmbienceEventGroups = [];
 }

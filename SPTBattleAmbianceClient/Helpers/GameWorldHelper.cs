@@ -1,25 +1,24 @@
 ﻿using Comfort.Common;
 using EFT;
 
-namespace SPTBattleAmbience.Helpers
+namespace SPTBattleAmbience.Helpers;
+
+public class GameWorldHelper
 {
-    public class GameWorldHelper
+    public static Player GetLocalPlayer()
     {
-        public static Player GetLocalPlayer()
+        if (FikaGlobals.IsHeadless)
         {
-            if (FikaGlobals.IsHeadless)
-            {
-                return null;
-            }
+            return null;
+        }
             
-            return Singleton<GameWorld>.Instance.MainPlayer;
-        }
+        return Singleton<GameWorld>.Instance.MainPlayer;
+    }
 
-        public static string GetCurrentMapId()
-        {
-            string mapId = Singleton<GameWorld>.Instance.LocationId;
+    public static string GetCurrentMapId()
+    {
+        string mapId = Singleton<GameWorld>.Instance.LocationId;
 
-            return mapId.ToLowerInvariant();
-        }
+        return mapId.ToLowerInvariant();
     }
 }

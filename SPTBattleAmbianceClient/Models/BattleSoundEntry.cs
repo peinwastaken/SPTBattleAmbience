@@ -1,11 +1,10 @@
 using SPTBattleAmbience.Data;
 using UnityEngine;
 
-namespace SPTBattleAmbience.Models
+namespace SPTBattleAmbience.Models;
+
+public class BattleSoundEntry
 {
-    public class BattleSoundEntry
-    {
-        public ClipInfo ClipInfo;
-        public float TimeToNextClip;
-    }
+    public ClipInfo ClipInfo;
+    public float TimeToNextClip;
 }

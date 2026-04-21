@@ -13,98 +13,97 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-namespace SPTBattleAmbience
+namespace SPTBattleAmbience;
+
+[BepInPlugin("com.pein.battleambience", "SPTBattleAmbience", "2.2.1")]
+public class Plugin : BaseUnityPlugin
 {
-    [BepInPlugin("com.pein.battleambience", "SPTBattleAmbience", "2.2.1")]
-    public class Plugin : BaseUnityPlugin
+    public static new ManualLogSource Logger;
+
+    private void Awake()
     {
-        public static new ManualLogSource Logger;
+        // Plugin startup logic
+        Logger = base.Logger;
+        DebugLogger.Logger = Logger;
 
-        private void Awake()
-        {
-            // Plugin startup logic
-            Logger = base.Logger;
-            DebugLogger.Logger = Logger;
-
-            ConfigHelper.Initialize(Config);
+        ConfigHelper.Initialize(Config);
             
-            LoadAmbientSoundCategories();
-            LoadMapConfigs();
+        LoadAmbientSoundCategories();
+        LoadMapConfigs();
 
-            new GameStartedPatch().Enable();
-            new OnGameEndedPatch().Enable();
+        new GameStartedPatch().Enable();
+        new OnGameEndedPatch().Enable();
             
-            FikaGlobals.Initialize();
-        }
+        FikaGlobals.Initialize();
+    }
 
-        private void Update()
+    private void Update()
+    {
+        if (GeneralConfig.EnableDebug.Value && GeneralConfig.PlayAmbientShortcut.Value.IsDown())
         {
-            if (GeneralConfig.EnableDebug.Value && GeneralConfig.PlayAmbientShortcut.Value.IsDown())
+            BattleAmbienceController.Instance.AmbienceManagers.Random().TriggerAmbience();
+        }
+    }
+
+    public static void CreateAmbienceController()
+    {
+        GameObject controllerObject = new GameObject("BattleAmbienceController");
+        controllerObject.AddComponent<BattleAmbienceController>();
+        DontDestroyOnLoad(controllerObject);
+    }
+
+    public static async void LoadAmbientSoundCategories()
+    {
+        BattleAmbienceController ambienceController = BattleAmbienceController.Instance;
+        string[] categoryPaths = FileHelper.ReadDirectories(FileHelper.SoundsPath);
+
+        foreach (string categoryPath in categoryPaths)
+        {
+            string categoryName = Path.GetFileName(categoryPath);
+            string[] soundTypePaths = FileHelper.ReadDirectories(categoryPath);
+            DebugLogger.LogWarning($"Loading ambient sound category: {categoryName}");
+
+            AmbientSoundCategory soundCategory = new AmbientSoundCategory();
+
+            foreach (string soundTypePath in soundTypePaths)
             {
-                BattleAmbienceController.Instance.AmbienceManagers.Random().TriggerAmbience();
-            }
-        }
+                string soundTypeName = Path.GetFileName(soundTypePath);
+                Dictionary<string, AudioClip> soundClips = await FileHelper.LoadAudioClipsFromDirectory(soundTypePath);
+                DebugLogger.LogWarning($"Loaded sound type: {soundTypeName} with {soundClips.Count} clips");
 
-        public static void CreateAmbienceController()
-        {
-            GameObject controllerObject = new GameObject("BattleAmbienceController");
-            controllerObject.AddComponent<BattleAmbienceController>();
-            DontDestroyOnLoad(controllerObject);
-        }
-
-        public static async void LoadAmbientSoundCategories()
-        {
-            BattleAmbienceController ambienceController = BattleAmbienceController.Instance;
-            string[] categoryPaths = FileHelper.ReadDirectories(FileHelper.SoundsPath);
-
-            foreach (string categoryPath in categoryPaths)
-            {
-                string categoryName = Path.GetFileName(categoryPath);
-                string[] soundTypePaths = FileHelper.ReadDirectories(categoryPath);
-                DebugLogger.LogWarning($"Loading ambient sound category: {categoryName}");
-
-                AmbientSoundCategory soundCategory = new AmbientSoundCategory();
-
-                foreach (string soundTypePath in soundTypePaths)
+                AmbientSounds ambientSounds = new AmbientSounds()
                 {
-                    string soundTypeName = Path.GetFileName(soundTypePath);
-                    Dictionary<string, AudioClip> soundClips = await FileHelper.LoadAudioClipsFromDirectory(soundTypePath);
-                    DebugLogger.LogWarning($"Loaded sound type: {soundTypeName} with {soundClips.Count} clips");
+                    AudioClips = soundClips
+                };
 
-                    AmbientSounds ambientSounds = new AmbientSounds()
-                    {
-                        AudioClips = soundClips
-                    };
-
-                    soundCategory.SoundTypes[soundTypeName] = ambientSounds;
-                }
-
-                AmbientHelper.AmbientSoundCategories[categoryName] = soundCategory;
-                DebugLogger.LogWarning($"Finished loading category: {categoryName}");
+                soundCategory.SoundTypes[soundTypeName] = ambientSounds;
             }
+
+            AmbientHelper.AmbientSoundCategories[categoryName] = soundCategory;
+            DebugLogger.LogWarning($"Finished loading category: {categoryName}");
         }
+    }
 
-        public static void LoadMapConfigs()
+    public static void LoadMapConfigs()
+    {
+        string[] mapConfigFiles = FileHelper.ReadFiles(FileHelper.MapConfigsPath, "*.json");
+
+        foreach (string mapConfigFile in mapConfigFiles)
         {
-            string[] mapConfigFiles = FileHelper.ReadFiles(FileHelper.MapConfigsPath, "*.json");
+            string mapName = Path.GetFileNameWithoutExtension(mapConfigFile);
 
-            foreach (string mapConfigFile in mapConfigFiles)
+            string jsonContent = File.ReadAllText(mapConfigFile);
+            AmbienceEvents config = JsonConvert.DeserializeObject<AmbienceEvents>(jsonContent);
+
+            foreach (AmbienceEventConfigGroup configGroup in config.AmbienceEventGroups.Values)
             {
-                string mapName = Path.GetFileNameWithoutExtension(mapConfigFile);
-
-                string jsonContent = File.ReadAllText(mapConfigFile);
-                AmbienceEvents config = JsonConvert.DeserializeObject<AmbienceEvents>(jsonContent);
-
-                foreach (AmbienceEventConfigGroup configGroup in config.AmbienceEventGroups.Values)
+                foreach (KeyValuePair<string, AmbienceEventConfig> kvp in configGroup.EventConfigs)
                 {
-                    foreach (KeyValuePair<string, AmbienceEventConfig> kvp in configGroup.EventConfigs)
-                    {
-                        kvp.Value.Name = kvp.Key;
-                    }
+                    kvp.Value.Name = kvp.Key;
                 }
-
-                AmbientHelper.MapAmbienceEvents[mapName] = config;
             }
+
+            AmbientHelper.MapAmbienceEvents[mapName] = config;
         }
     }
 }
