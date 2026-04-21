@@ -1,19 +1,20 @@
-﻿using BattleAmbienceClient.Config;
-using BattleAmbienceClient.Config.General;
-using BattleAmbienceClient.Controllers;
-using BattleAmbienceClient.Data;
-using BattleAmbienceClient.Helpers;
-using BattleAmbienceClient.Models;
-using BattleAmbienceClient.Models.Maps;
-using BattleAmbienceClient.Models.Sounds;
-using BattleAmbienceClient.Utility;
-using Comfort.Common;
+﻿using Comfort.Common;
 using EFT;
+using PeinRecoilRework.Helpers;
+using SPTBattleAmbience.Config;
+using SPTBattleAmbience.Config.General;
+using SPTBattleAmbience.Controllers;
+using SPTBattleAmbience.Data;
+using SPTBattleAmbience.Helpers;
+using SPTBattleAmbience.Models;
+using SPTBattleAmbience.Models.Maps;
+using SPTBattleAmbience.Models.Sounds;
+using SPTBattleAmbience.Utility;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BattleAmbienceClient.Managers
+namespace SPTBattleAmbience.Managers
 {
     public class AmbienceManager
     {

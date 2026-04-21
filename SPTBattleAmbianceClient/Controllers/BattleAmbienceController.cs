@@ -1,11 +1,11 @@
-using BattleAmbienceClient.Helpers;
-using BattleAmbienceClient.Managers;
-using BattleAmbienceClient.Models.Maps;
-using BattleAmbienceClient.Utility;
+using PeinRecoilRework.Helpers;
+using SPTBattleAmbience.Helpers;
+using SPTBattleAmbience.Managers;
+using SPTBattleAmbience.Models.Maps;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BattleAmbienceClient.Controllers
+namespace SPTBattleAmbience.Controllers
 {
     public class BattleAmbienceController : MonoBehaviour
     {

@@ -1,6 +1,4 @@
-﻿namespace BattleAmbienceClient.Config;
-
-/// <summary>
+﻿/// <summary>
 /// Class that specifies how a setting should be displayed inside the ConfigurationManager settings window.
 /// 
 /// Usage:

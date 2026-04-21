@@ -1,9 +1,9 @@
-﻿using BattleAmbienceClient.Data.Enum;
-using BattleAmbienceClient.Helpers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using SPTBattleAmbience.Data.Enum;
+using SPTBattleAmbience.Helpers;
 using UnityEngine;
 
-namespace BattleAmbienceClient.Utility
+namespace SPTBattleAmbience.Utility
 {
     public static class Utils
     {

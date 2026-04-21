@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BattleAmbienceClient.Config
+namespace SPTBattleAmbience.Config
 {
     public struct MapConfigStruct
     {

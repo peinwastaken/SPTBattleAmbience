@@ -1,7 +1,7 @@
-﻿using BattleAmbienceClient.Data.Enum;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using SPTBattleAmbience.Data.Enum;
 
-namespace BattleAmbienceClient.Models.Maps
+namespace SPTBattleAmbience.Models.Maps
 {
     public class AmbienceEventConfig
     {

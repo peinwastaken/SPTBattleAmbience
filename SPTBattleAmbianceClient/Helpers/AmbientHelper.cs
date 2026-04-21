@@ -1,13 +1,13 @@
-﻿using BattleAmbienceClient.Config.General;
-using BattleAmbienceClient.Data;
-using BattleAmbienceClient.Models.Maps;
-using BattleAmbienceClient.Models.Sounds;
-using BattleAmbienceClient.Utility;
-using Comfort.Common;
+﻿using Comfort.Common;
+using PeinRecoilRework.Helpers;
+using SPTBattleAmbience.Config.General;
+using SPTBattleAmbience.Data;
+using SPTBattleAmbience.Models.Maps;
+using SPTBattleAmbience.Models.Sounds;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BattleAmbienceClient.Helpers
+namespace SPTBattleAmbience.Helpers
 {
     public class AmbientHelper
     {

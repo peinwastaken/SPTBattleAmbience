@@ -1,10 +1,10 @@
-﻿using BattleAmbienceClient.Controllers;
-using EFT;
+﻿using EFT;
 using HarmonyLib;
 using SPT.Reflection.Patching;
+using SPTBattleAmbience.Controllers;
 using System.Reflection;
 
-namespace BattleAmbienceClient.Patches
+namespace SPTBattleAmbience.Patches
 {
     public class OnGameEndedPatch : ModulePatch
     {

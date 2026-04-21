@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BattleAmbienceClient.Models.Sounds
+namespace SPTBattleAmbience.Models.Sounds
 {
     public class AmbientSoundCategory
     {

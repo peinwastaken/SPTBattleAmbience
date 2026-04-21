@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace BattleAmbienceClient.Models.Sounds
+namespace SPTBattleAmbience.Models.Sounds
 {
     public class AmbientSounds
     {

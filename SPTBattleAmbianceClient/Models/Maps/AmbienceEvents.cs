@@ -3,7 +3,7 @@ using Newtonsoft.Json.Serialization;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BattleAmbienceClient.Models.Maps
+namespace SPTBattleAmbience.Models.Maps
 {
     public class AmbienceEvents
     {

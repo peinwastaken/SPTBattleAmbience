@@ -1,7 +1,7 @@
 ﻿using Comfort.Common;
 using EFT;
 
-namespace BattleAmbienceClient.Helpers
+namespace SPTBattleAmbience.Helpers
 {
     public class GameWorldHelper
     {
