@@ -1,0 +1,73 @@
+{
+  "ambienceEvents": {
+    "gunfireEvents": {
+      "category": "weapons",
+      "eventConfigs": {
+        "firefight": {
+          "usePlayerDirection": true,
+          "minimumSoundTypes": 1,
+          "maximumSoundTypes": 2,
+          "minimumSoundCount": 4,
+          "maximumSoundCount": 12,
+          "minimumSoundGap": 0.5,
+          "maximumSoundGap": 3,
+          "minimumVolume": 0.3,
+          "maximumVolume": 0.8,
+          "minimumTimeToNextAmbience": 30,
+          "maximumTimeToNextAmbience": 90
+        },
+        "intenseFirefight": {
+          "usePlayerDirection": true,
+          "minimumSoundTypes": 2,
+          "maximumSoundTypes": 4,
+          "minimumSoundCount": 15,
+          "maximumSoundCount": 30,
+          "minimumSoundGap": 0.5,
+          "maximumSoundGap": 2,
+          "minimumVolume": 0.5,
+          "maximumVolume": 1,
+          "minimumTimeToNextAmbience": 120,
+          "maximumTimeToNextAmbience": 180,
+          "timeRestriction": "day"
+        }
+      }
+    },
+    "artilleryEvents": {
+      "category": "indirect",
+      "eventConfigs": {
+        "artillery": {
+          "usePlayerDirection": true,
+          "minimumSoundTypes": 1,
+          "maximumSoundTypes": 1,
+          "minimumSoundCount": 4,
+          "maximumSoundCount": 8,
+          "minimumSoundGap": 5,
+          "maximumSoundGap": 7,
+          "minimumVolume": 0.5,
+          "maximumVolume": 1,
+          "minimumTimeToNextAmbience": 150,
+          "maximumTimeToNextAmbience": 400
+        }
+      }
+    },
+    "vehicleEvents": {
+      "category": "vehicles",
+      "eventConfigs": {
+        "helicopter": {
+          "soundTypes": [ "helicopter" ],
+          "usePlayerDirection": true,
+          "minimumSoundTypes": 1,
+          "maximumSoundTypes": 1,
+          "minimumSoundCount": 1,
+          "maximumSoundCount": 1,
+          "minimumVolume": 0.6,
+          "maximumVolume": 0.9,
+          "minimumTimeToNextAmbience": 1200,
+          "maximumTimeToNextAmbience": 3000,
+          "minimumTimeFromRaidStart": 180,
+          "maximumTimeFromRaidStart": 1200
+        }
+      }
+    }
+  }
+}

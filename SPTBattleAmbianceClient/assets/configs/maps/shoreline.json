@@ -1,0 +1,76 @@
+{
+  "ambienceEvents": {
+    "gunfireEvents": {
+      "category": "weapons",
+      "eventConfigs": {
+        "firefight": {
+          "usePlayerDirection": true,
+          "minimumSoundTypes": 1,
+          "maximumSoundTypes": 2,
+          "minimumSoundCount": 10,
+          "maximumSoundCount": 25,
+          "minimumSoundGap": 0.5,
+          "maximumSoundGap": 3,
+          "minimumVolume": 0.3,
+          "maximumVolume": 0.8,
+          "minimumTimeToNextAmbience": 120,
+          "maximumTimeToNextAmbience": 240
+        },
+        "intenseFirefight": {
+          "usePlayerDirection": true,
+          "minimumSoundTypes": 2,
+          "maximumSoundTypes": 4,
+          "minimumSoundCount": 10,
+          "maximumSoundCount": 25,
+          "minimumSoundGap": 0.5,
+          "maximumSoundGap": 2,
+          "minimumVolume": 0.5,
+          "maximumVolume": 1,
+          "minimumTimeToNextAmbience": 300,
+          "maximumTimeToNextAmbience": 600,
+          "timeRestriction": "day"
+        }
+      }
+    },
+    "artilleryEvents": {
+      "category": "indirect",
+      "eventConfigs": {
+        "artillery": {
+          "usePlayerDirection": true,
+          "minimumSoundTypes": 1,
+          "maximumSoundTypes": 1,
+          "minimumSoundCount": 4,
+          "maximumSoundCount": 8,
+          "minimumSoundGap": 5,
+          "maximumSoundGap": 7,
+          "minimumVolume": 0.5,
+          "maximumVolume": 1,
+          "minimumTimeToNextAmbience": 540,
+          "maximumTimeToNextAmbience": 900
+        }
+      }
+    },
+    "animalEvents": {
+      "category": "wildlife",
+      "eventConfigs": {
+        "wolf": {
+          "soundTypes": [ "wolf" ],
+          "usePlayerDirection": true,
+          "minimumSoundTypes": 1,
+          "maximumSoundTypes": 1,
+          "minimumSoundCount": 2,
+          "maximumSoundCount": 4,
+          "minimumSoundGap": 10,
+          "maximumSoundGap": 20,
+          "minimumVolume": 0.6,
+          "maximumVolume": 1.0,
+          "minimumTimeToNextAmbience": 1200,
+          "maximumTimeToNextAmbience": 3000,
+          "minimumTimeFromRaidStart": 180,
+          "maximumTimeFromRaidStart": 1200,
+          "timeRestriction": "night"
+        }
+      }
+    }
+  }
+}
