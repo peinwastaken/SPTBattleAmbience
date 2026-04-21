@@ -1,4 +1,4 @@
-﻿using PeinRecoilRework.Helpers;
+﻿using BattleAmbienceClient.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace SPTBattleAmbience.Helpers
+namespace BattleAmbienceClient.Helpers
 {
     public static class FileHelper
     {

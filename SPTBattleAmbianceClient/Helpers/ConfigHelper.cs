@@ -1,12 +1,11 @@
-﻿using BepInEx.Configuration;
-using PeinRecoilRework.Helpers;
-using SPTBattleAmbience.Config;
-using SPTBattleAmbience.Config.General;
-using SPTBattleAmbience.Utility;
+﻿using BattleAmbienceClient.Config;
+using BattleAmbienceClient.Config.General;
+using BattleAmbienceClient.Utility;
+using BepInEx.Configuration;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SPTBattleAmbience.Helpers
+namespace BattleAmbienceClient.Helpers
 {
     public static class ConfigHelper
     {

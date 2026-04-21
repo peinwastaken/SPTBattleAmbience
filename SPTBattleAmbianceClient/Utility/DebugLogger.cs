@@ -1,7 +1,7 @@
-﻿using BepInEx.Logging;
-using SPTBattleAmbience.Config.General;
+﻿using BattleAmbienceClient.Config.General;
+using BepInEx.Logging;
 
-namespace PeinRecoilRework.Helpers
+namespace BattleAmbienceClient.Utility
 {
     public class DebugLogger
     {

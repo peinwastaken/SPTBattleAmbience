@@ -2,7 +2,7 @@
 using UnityEngine;
 using static BetterAudio;
 
-namespace SPTBattleAmbience.Config.General
+namespace BattleAmbienceClient.Config.General
 {
     public static class GeneralConfig
     {

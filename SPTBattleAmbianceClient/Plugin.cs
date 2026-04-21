@@ -1,19 +1,18 @@
-﻿using BepInEx;
-using BepInEx.Bootstrap;
+﻿using BattleAmbienceClient.Config.General;
+using BattleAmbienceClient.Controllers;
+using BattleAmbienceClient.Helpers;
+using BattleAmbienceClient.Models.Maps;
+using BattleAmbienceClient.Models.Sounds;
+using BattleAmbienceClient.Patches;
+using BattleAmbienceClient.Utility;
+using BepInEx;
 using BepInEx.Logging;
 using Newtonsoft.Json;
-using PeinRecoilRework.Helpers;
-using SPTBattleAmbience.Config.General;
-using SPTBattleAmbience.Controllers;
-using SPTBattleAmbience.Helpers;
-using SPTBattleAmbience.Models.Maps;
-using SPTBattleAmbience.Models.Sounds;
-using SPTBattleAmbience.Patches;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-namespace SPTBattleAmbience
+namespace BattleAmbienceClient
 {
     [BepInPlugin("com.pein.battleambience", "SPTBattleAmbience", "2.2.1")]
     public class Plugin : BaseUnityPlugin

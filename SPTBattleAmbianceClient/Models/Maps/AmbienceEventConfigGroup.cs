@@ -1,11 +1,10 @@
-﻿using Newtonsoft.Json;
-using PeinRecoilRework.Helpers;
-using SPTBattleAmbience.Data.Enum;
-using SPTBattleAmbience.Utility;
+﻿using BattleAmbienceClient.Data.Enum;
+using BattleAmbienceClient.Utility;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SPTBattleAmbience.Models.Maps
+namespace BattleAmbienceClient.Models.Maps
 {
     public class AmbienceEventConfigGroup
     {

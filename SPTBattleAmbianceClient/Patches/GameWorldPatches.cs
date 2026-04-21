@@ -1,10 +1,10 @@
-﻿using EFT;
+﻿using BattleAmbienceClient.Controllers;
+using EFT;
 using HarmonyLib;
 using SPT.Reflection.Patching;
-using SPTBattleAmbience.Controllers;
 using System.Reflection;
 
-namespace SPTBattleAmbience.Patches
+namespace BattleAmbienceClient.Patches
 {
     public class GameStartedPatch : ModulePatch
     {

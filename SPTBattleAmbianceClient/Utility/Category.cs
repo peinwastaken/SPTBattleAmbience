@@ -1,4 +1,4 @@
-﻿namespace SPTBattleAmbience.Utility
+﻿namespace BattleAmbienceClient.Utility
 {
     public class Category
     {

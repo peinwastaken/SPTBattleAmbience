@@ -1,8 +1,8 @@
-﻿using BepInEx.Configuration;
-using SPTBattleAmbience.Utility;
+﻿using BattleAmbienceClient.Utility;
+using BepInEx.Configuration;
 using UnityEngine;
 
-namespace SPTBattleAmbience.Config
+namespace BattleAmbienceClient.Config
 {
     public class MapConfigBase
     {

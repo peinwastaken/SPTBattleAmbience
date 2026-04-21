@@ -1,7 +1,7 @@
-using SPTBattleAmbience.Data;
+using BattleAmbienceClient.Data;
 using UnityEngine;
 
-namespace SPTBattleAmbience.Models
+namespace BattleAmbienceClient.Models
 {
     public class BattleSoundEntry
     {

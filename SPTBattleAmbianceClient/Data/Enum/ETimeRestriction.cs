@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace SPTBattleAmbience.Data.Enum
+namespace BattleAmbienceClient.Data.Enum
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ETimeRestriction

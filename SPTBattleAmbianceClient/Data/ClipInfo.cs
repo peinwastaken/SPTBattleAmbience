@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SPTBattleAmbience.Data
+namespace BattleAmbienceClient.Data
 {
     public class ClipInfo
     {

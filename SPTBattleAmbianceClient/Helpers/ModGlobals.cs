@@ -2,7 +2,7 @@ using BepInEx;
 using BepInEx.Bootstrap;
 using System.Collections.Generic;
 
-namespace SPTBattleAmbience.Helpers;
+namespace BattleAmbienceClient.Helpers;
 
 public static class FikaGlobals
 {
