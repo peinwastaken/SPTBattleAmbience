@@ -157,7 +157,7 @@ namespace SPTBattleAmbience.Helpers
 
         public static MapConfigBase GetMapConfig(string mapId)
         {
-            MapConfigs.TryGetValue(mapId.ToLower(), out MapConfigBase config);
+            MapConfigs.TryGetValue(mapId.ToLowerInvariant(), out MapConfigBase config);
 
             if (config == null)
             {

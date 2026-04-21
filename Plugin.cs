@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BepInEx.Bootstrap;
 using BepInEx.Logging;
 using Newtonsoft.Json;
 using PeinRecoilRework.Helpers;
@@ -32,11 +33,13 @@ namespace SPTBattleAmbience
 
             new GameStartedPatch().Enable();
             new OnGameEndedPatch().Enable();
+            
+            FikaGlobals.Initialize();
         }
 
         private void Update()
         {
-            if (GeneralConfig.EnableDebug.Value == true && GeneralConfig.PlayAmbientShortcut.Value.IsDown())
+            if (GeneralConfig.EnableDebug.Value && GeneralConfig.PlayAmbientShortcut.Value.IsDown())
             {
                 BattleAmbienceController.Instance.AmbienceManagers.Random().TriggerAmbience();
             }

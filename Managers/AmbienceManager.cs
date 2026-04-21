@@ -101,6 +101,12 @@ namespace SPTBattleAmbience.Managers
         
         private Vector3 CalculateSpawnPoint(Player player, MapConfigBase mapConfig, AmbienceEventConfig ambienceEvent)
         {
+            // if were headless handle spawn point through fika sync plugin
+            if (!player || FikaGlobals.IsHeadless)
+            {
+                return Vector3.zero;
+            }
+            
             if (mapConfig.UsePlayerDirection.Value && ambienceEvent.UsePlayerDirection)
             {
                 Vector3 mapCenter = mapConfig.MapCenter.Value;

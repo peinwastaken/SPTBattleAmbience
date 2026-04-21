@@ -7,14 +7,19 @@ namespace SPTBattleAmbience.Helpers
     {
         public static Player GetLocalPlayer()
         {
+            if (FikaGlobals.IsHeadless)
+            {
+                return null;
+            }
+            
             return Singleton<GameWorld>.Instance.MainPlayer;
         }
 
         public static string GetCurrentMapId()
         {
-            string mapId = GetLocalPlayer()?.Location.ToLower();
+            string mapId = Singleton<GameWorld>.Instance.LocationId;
 
-            return mapId;
+            return mapId.ToLowerInvariant();
         }
     }
 }
