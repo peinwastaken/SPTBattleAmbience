@@ -1,0 +1,85 @@
+<Project>
+    <ItemGroup>
+        <ModFiles Include="$(TargetDir)$(TargetName).dll"/>
+        <ModFiles Include="$(TargetDir)$(TargetName).pdb" Condition="Exists('$(TargetDir)$(TargetName).pdb') and '$(Configuration)'=='Debug'"/>
+        <ModFiles Include="Resources\**\*"/>
+    </ItemGroup>
+
+    <PropertyGroup>
+        <IsClientMod Condition="$(MSBuildProjectName.Contains('Client')) or $(SPTModType)=='Client'">true</IsClientMod>
+        <IsServerMod Condition="$(MSBuildProjectName.Contains('Server')) or $(SPTModType)=='Server'">true</IsServerMod>
+        <IsFikaMod Condition="$(MSBuildProjectName.Contains('Fika')) or $(SPTModType)=='Fika'">true</IsFikaMod>
+    </PropertyGroup>
+    
+    <Target Name="CreateReleaseFolder" BeforeTargets="Build" Condition="Exists('$(ReleaseRoot)')=='false'">
+        <Message Text="Creating release folder..." Importance="high" />
+        
+        <MakeDir Directories="$(ReleaseRoot)" />
+    </Target>
+    
+    <Target Name="CopyClientFiles" AfterTargets="Build" Condition="$(IsClientMod)=='true'">
+        <!-- copy client files to spt -->
+        <Message Text="Copying client mod to $(ClientModsDir)" Importance="high"/>
+        <Copy
+            SourceFiles="@(ModFiles)"
+            DestinationFolder="$(ClientModsDir)\%(RecursiveDir)"
+            ContinueOnError="false"
+        />
+
+        <!-- copy client files to release -->
+        <Message Text="Copying client mod to $(ReleaseRoot)" Importance="high"/>
+        <Copy
+            SourceFiles="@(ModFiles)"
+            DestinationFolder="$(ReleaseRoot)\$(ClientFolder)\%(RecursiveDir)"
+            Condition="$(Configuration)=='Release'"
+            ContinueOnError="false"
+        />
+
+        <!-- hooray! -->
+        <Message Text="Successfully copied client mod!" Importance="high"/>
+    </Target>
+    
+    <Target Name="CopyFikaSyncFiles" AfterTargets="Build" Condition="$(IsFikaMod)=='true'">
+        <!-- copy fika sync files to spt -->
+        <Message Text="Copying client mod to $(ClientModsDir)" Importance="high"/>
+        <Copy
+            SourceFiles="@(ModFiles)"
+            DestinationFolder="$(ClientModsDir)\%(RecursiveDir)"
+            ContinueOnError="false"
+        />
+
+        <!-- copy fika sync files to its own special release hell -->
+        <Message Text="Copying client mod to $(ReleaseRoot)" Importance="high"/>
+        <Copy
+            SourceFiles="@(ModFiles)"
+            DestinationFolder="$(ReleaseRoot)\FikaSync\$(ClientFolder)\%(RecursiveDir)"
+            Condition="$(Configuration)=='Release'"
+            ContinueOnError="false"
+        />
+
+        <!-- hooray! -->
+        <Message Text="Successfully copied fika mod!" Importance="high"/>
+    </Target>
+
+    <Target Name="CopyServerFiles" AfterTargets="Build" Condition="$(IsServerMod)=='true'">
+        <!-- copy server files to spt -->
+        <Message Text="Copying server mod to $(ServerModsDir)" Importance="high"/>
+        <Copy
+            SourceFiles="@(ModFiles)"
+            DestinationFolder="$(ServerModsDir)\%(RecursiveDir)"
+            ContinueOnError="false"
+        />
+
+        <!-- copy server files to release -->
+        <Message Text="Copying server mod to $(ReleaseRoot)" Importance="high"/>
+        <Copy
+            SourceFiles="@(ModFiles)"
+            DestinationFolder="$(ReleaseRoot)\$(ServerFolder)\%(RecursiveDir)"
+            Condition="$(Configuration)=='Release'"
+            ContinueOnError="false"
+        />
+
+        <!-- hooray! -->
+        <Message Text="Successfully copied server mod!" Importance="high"/>
+    </Target>
+</Project>
