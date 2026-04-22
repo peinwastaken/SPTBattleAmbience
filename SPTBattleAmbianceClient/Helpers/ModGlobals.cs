@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SPTBattleAmbience.Helpers;
 
-public static class FikaGlobals
+public static class FikaData
 {
     public static bool IsFika = false;
     public static bool IsHeadless = false;

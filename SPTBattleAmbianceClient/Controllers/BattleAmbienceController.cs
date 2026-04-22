@@ -1,4 +1,5 @@
 using PeinRecoilRework.Helpers;
+using SPTBattleAmbience.Data;
 using SPTBattleAmbience.Helpers;
 using SPTBattleAmbience.Managers;
 using SPTBattleAmbience.Models.Maps;
@@ -32,9 +33,6 @@ public class BattleAmbienceController : MonoBehaviour
     {
         AmbienceManagers = new List<AmbienceManager>();
 
-        // force reload audioclips because otherwise they become null
-        Plugin.LoadAmbientSoundCategories();
-
         string mapId = GameWorldHelper.GetCurrentMapId();
         AmbientHelper.MapAmbienceEvents.TryGetValue(mapId, out AmbienceEvents mapEvents);
 
@@ -56,7 +54,7 @@ public class BattleAmbienceController : MonoBehaviour
         _gameStarted = true;
     }
 
-    public void OnGameEnded()
+    public void OnDestroy()
     {
         if(AmbienceManagers == null)
         {

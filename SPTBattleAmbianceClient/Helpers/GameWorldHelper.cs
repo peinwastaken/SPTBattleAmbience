@@ -7,7 +7,7 @@ public class GameWorldHelper
 {
     public static Player GetLocalPlayer()
     {
-        if (FikaGlobals.IsHeadless)
+        if (FikaData.IsHeadless)
         {
             return null;
         }

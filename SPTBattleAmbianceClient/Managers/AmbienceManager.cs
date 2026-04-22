@@ -99,10 +99,10 @@ public class AmbienceManager
     }
         
         
-    private Vector3 CalculateSpawnPoint(Player player, MapConfigBase mapConfig, AmbienceEventConfig ambienceEvent)
+    public Vector3 CalculateSpawnPoint(Player player, MapConfigBase mapConfig, AmbienceEventConfig ambienceEvent)
     {
         // if were headless handle spawn point through fika sync plugin
-        if (!player || FikaGlobals.IsHeadless)
+        if (!player || FikaData.IsHeadless)
         {
             return Vector3.zero;
         }
@@ -137,7 +137,7 @@ public class AmbienceManager
         ChooseNextAmbience(mapConfig.AmbienceEventCooldownMultiplier.Value * GeneralConfig.GlobalAmbientCooldownMult.Value);
     }
 
-    private IEnumerator PerformAmbience(BattleSoundSequence sequence, MapConfigBase mapConfig, Vector3 position, int rolloff)
+    public IEnumerator PerformAmbience(BattleSoundSequence sequence, MapConfigBase mapConfig, Vector3 position, int rolloff)
     {
         DebugLogger.LogWarning("Starting ambience sequence");
 
@@ -225,13 +225,7 @@ public class AmbienceManager
 
                 foreach (KeyValuePair<string, AudioClip> kvp in audioClipDict)
                 {
-                    availableClips.Add(new ClipInfo()
-                    {
-                        Category = category,
-                        SoundType = soundType,
-                        AudioClip = kvp.Value,
-                        ClipName = kvp.Key
-                    });
+                    availableClips.Add(AmbientHelper.GetClipInfo(category, soundType, kvp.Key));
                 }
             }
         }

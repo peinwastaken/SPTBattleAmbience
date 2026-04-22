@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using SPTBattleAmbience.Data.Enum;
 using SPTBattleAmbience.Helpers;
+using System.Collections;
 using UnityEngine;
 
 namespace SPTBattleAmbience.Utility;
@@ -13,16 +14,17 @@ public static class Utils
         Random.Range(-1f, 1f)
     ).normalized;
 
-    public static Vector3 GetVectorWithAngleOffset(Vector3 vector, float angleRange)
+    public static Vector3 GetVectorWithAngleOffset(Vector3 vector, float angleRange, bool normalize = true)
     {
         float angle = Mathf.Atan2(vector.z, vector.x);
         float offset = Mathf.Deg2Rad * Random.Range(-angleRange, angleRange);
         float newAngle = angle + offset;
-
-        return new Vector3(Mathf.Cos(newAngle), vector.y, Mathf.Sin(newAngle)).normalized;
+        Vector3 result = new Vector3(Mathf.Cos(newAngle), vector.y, Mathf.Sin(newAngle));
+        
+        return normalize ? result.normalized : result * vector.magnitude;
     }
 
-    public static string StringifyArray(object[] array)
+    public static string StringifyArray(IEnumerable array)
     {
         return $"[{string.Join(", ", array)}]";
     }
