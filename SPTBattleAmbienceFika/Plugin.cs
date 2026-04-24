@@ -14,7 +14,7 @@ using System.Collections.Generic;
 
 namespace SPTBattleAmbienceFika;
 
-[BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+[BepInPlugin("com.pein.battleambiencefika", "BattleAmbienceFikaSync", "1.0.1")]
 [BepInDependency("com.fika.core")]
 public class Plugin : BaseUnityPlugin
 {
@@ -24,7 +24,6 @@ public class Plugin : BaseUnityPlugin
     {
         // Plugin startup logic
         Logger = base.Logger;
-        Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
         
         PatchManager patchManager = new PatchManager(this, true);
         patchManager.EnablePatches();
