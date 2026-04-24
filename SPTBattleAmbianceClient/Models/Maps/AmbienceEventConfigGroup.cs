@@ -26,7 +26,7 @@ public class AmbienceEventConfigGroup
         foreach (AmbienceEventConfig config in EventConfigs.Values)
         {
             ETimeRestriction configTimeRestriction = config.TimeRestriction;
-            DebugLogger.LogError(configTimeRestriction.ToString());
+            DebugLogger.LogInfo(configTimeRestriction.ToString());
 
             if (configTimeRestriction == currentTimeRestriction || configTimeRestriction == ETimeRestriction.Always)
             {

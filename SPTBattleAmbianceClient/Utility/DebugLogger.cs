@@ -10,7 +10,7 @@ public class DebugLogger
 
     public static void Log(string message, LogLevel logLevel = LogLevel.Info)
     {
-        if (!_isDebug) return;
+        if (!_isDebug || logLevel == LogLevel.Error) return;
 
         Logger?.Log(logLevel, message);
     }

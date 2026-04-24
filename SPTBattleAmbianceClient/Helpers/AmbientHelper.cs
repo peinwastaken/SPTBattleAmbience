@@ -38,6 +38,12 @@ public static class AmbientHelper
 
     public static void PlayAmbienceSound(Vector3 position, ClipInfo clipInfo, int rolloff, float volume)
     {
+        if (clipInfo == null || !clipInfo.AudioClip)
+        {
+            DebugLogger.LogError($"Could not play ambience event at position {position}");
+            return;
+        }
+        
         DebugLogger.LogInfo($"playing sound: {clipInfo.ClipName} at position {position}");
             
         Singleton<BetterAudio>.Instance.PlayAtPoint(

@@ -32,7 +32,7 @@ public class AmbienceManager
             
         if (NextAmbienceEvent == null)
         {
-            DebugLogger.LogError($"couldnt get random event for category {EventConfigGroup.Category} . skipping...");
+            DebugLogger.LogWarning($"couldnt get random event for category {EventConfigGroup.Category} . skipping...");
             TimeSinceLastEvent = 0f;
             NextEventTime = 60f;
             return;
@@ -73,7 +73,7 @@ public class AmbienceManager
 
         if (NextAmbienceEvent == null)
         {
-            DebugLogger.LogError("NextAmbienceEvent is null. Skipping and waiting...");
+            DebugLogger.LogWarning("NextAmbienceEvent is null. Skipping and waiting...");
             TimeSinceLastEvent = 0f;
             NextEventTime = 60f;
             return false;
@@ -126,7 +126,7 @@ public class AmbienceManager
     {
         if (!TryPrepareAmbience(out var sequence, out var mapConfig, out var soundSpawnPoint, out var rolloff))
         {
-            DebugLogger.LogError($"Failed to prepare ambience for category {EventConfigGroup.Category}");
+            DebugLogger.LogWarning($"Failed to prepare ambience for category {EventConfigGroup.Category}");
             return;
         }
 
