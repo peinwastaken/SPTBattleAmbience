@@ -112,13 +112,13 @@ public class AmbienceManager
             Vector3 mapCenter = mapConfig.MapCenter.Value;
             float mapRadius = mapConfig.MapRadius.Value;
             Vector3 dirToPlayerFlat = (player.Position - mapCenter).WithY(0).normalized;
-            Vector3 soundSpawnDir = Utils.GetVectorWithAngleOffset(dirToPlayerFlat, 30f);
+            Vector3 soundSpawnDir = ModUtils.GetVectorWithAngleOffset(dirToPlayerFlat, 30f);
             return mapCenter + soundSpawnDir * mapRadius;
         }
         else
         {
             float soundDistance = ambienceEvent.SoundDistance > 0 ? ambienceEvent.SoundDistance : Random.Range(100, 500);
-            return player.Position + Utils.RandomVector.WithY(0) * soundDistance;
+            return player.Position + ModUtils.RandomVector.WithY(0) * soundDistance;
         }
     }
 
@@ -185,7 +185,7 @@ public class AmbienceManager
 
         DebugLogger.LogWarning($"category: {category}");
         DebugLogger.LogWarning($"soundTypeDict length: {soundTypeDict.Count}");
-        DebugLogger.LogWarning($"allSoundTypes: {Utils.StringifyArray(typesArray)} | length: {typesArray.Length}");
+        DebugLogger.LogWarning($"allSoundTypes: {ModUtils.StringifyArray(typesArray)} | length: {typesArray.Length}");
 
         int typeCount = Random.Range(minTypes, maxTypes + 1);
         if (typeCount >= typesArray.Length)
@@ -209,7 +209,7 @@ public class AmbienceManager
 
         DebugLogger.LogWarning("Generating sequence:");
         DebugLogger.LogWarning($"Category: {category}");
-        DebugLogger.LogWarning($"SoundTypes: {Utils.StringifyArray(soundTypes)}");
+        DebugLogger.LogWarning($"SoundTypes: {ModUtils.StringifyArray(soundTypes)}");
         DebugLogger.LogWarning($"minSounds: {minSounds} | maxSounds: {maxSounds}");
         DebugLogger.LogWarning($"minGap: {minGap} | maxGap: {maxGap}");
 
@@ -239,14 +239,14 @@ public class AmbienceManager
             ClipInfo clipInfo = availableClips[Random.Range(0, availableClips.Count)];
             float timeToNextClip = Random.Range(minGap, maxGap);
 
-            selectedClips.Add(new BattleSoundEntry()
+            selectedClips.Add(new BattleSoundEntry
             {
                 ClipInfo = clipInfo,
                 TimeToNextClip = timeToNextClip
             });
         }
 
-        return new BattleSoundSequence()
+        return new BattleSoundSequence
         {
             AudioClips = selectedClips
         };

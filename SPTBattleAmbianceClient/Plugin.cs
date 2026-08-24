@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using Comfort.Common;
+using Diz.Utils;
 using EFT;
 using PeinRecoilRework.Helpers;
 using SPTBattleAmbience.Config.General;

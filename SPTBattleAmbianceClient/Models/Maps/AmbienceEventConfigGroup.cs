@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using EFT;
+using Newtonsoft.Json;
 using PeinRecoilRework.Helpers;
 using SPTBattleAmbience.Data.Enum;
 using SPTBattleAmbience.Utility;
@@ -20,7 +21,7 @@ public class AmbienceEventConfigGroup
 
     public AmbienceEventConfig GetRandomEventConfig(bool useWeight = false)
     {
-        ETimeRestriction currentTimeRestriction = Utils.GetCurrentTimeRestriction();
+        ETimeRestriction currentTimeRestriction = ModUtils.GetCurrentTimeRestriction();
         List<AmbienceEventConfig> validConfigs = [];
 
         foreach (AmbienceEventConfig config in EventConfigs.Values)

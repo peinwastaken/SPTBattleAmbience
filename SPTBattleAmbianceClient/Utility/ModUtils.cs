@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using EFT;
+using System.Collections.Generic;
 using SPTBattleAmbience.Data.Enum;
 using SPTBattleAmbience.Helpers;
 using System.Collections;
@@ -6,7 +7,7 @@ using UnityEngine;
 
 namespace SPTBattleAmbience.Utility;
 
-public static class Utils
+public static class ModUtils
 {
     public static Vector3 RandomVector => new Vector3(
         Random.Range(-1f, 1f),

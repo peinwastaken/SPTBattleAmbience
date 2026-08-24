@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using EFT;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SPTBattleAmbience.Models.Sounds;
