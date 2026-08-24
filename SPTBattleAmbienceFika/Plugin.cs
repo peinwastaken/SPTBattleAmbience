@@ -14,7 +14,7 @@ using System.Collections.Generic;
 
 namespace SPTBattleAmbienceFika;
 
-[BepInPlugin("com.pein.battleambiencefika", "BattleAmbienceFikaSync", "1.0.1")]
+[BepInPlugin("com.pein.battleambiencefika", "BattleAmbienceFikaSync", "1.0.2")]
 [BepInDependency("com.fika.core")]
 public class Plugin : BaseUnityPlugin
 {

@@ -11,7 +11,7 @@ using SPTBattleAmbience.Patches;
 
 namespace SPTBattleAmbience;
 
-[BepInPlugin("com.pein.battleambience", "SPTBattleAmbience", "2.3.0")]
+[BepInPlugin("com.pein.battleambience", "SPTBattleAmbience", "2.4.0")]
 public class Plugin : BaseUnityPlugin
 {
     public static new ManualLogSource Logger;
