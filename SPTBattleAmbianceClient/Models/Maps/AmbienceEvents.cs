@@ -9,4 +9,7 @@ public class AmbienceEvents
 {
     [JsonProperty("ambienceEvents")]
     public Dictionary<string, AmbienceEventConfigGroup> AmbienceEventGroups = [];
+    
+    [JsonProperty("soundZones")]
+    public List<SoundZoneEntry> SoundZones = [];
 }

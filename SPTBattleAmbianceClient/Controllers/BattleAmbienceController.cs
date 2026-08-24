@@ -1,4 +1,5 @@
 using PeinRecoilRework.Helpers;
+using SPTBattleAmbience.Config;
 using SPTBattleAmbience.Data;
 using SPTBattleAmbience.Helpers;
 using SPTBattleAmbience.Managers;
@@ -13,6 +14,9 @@ public class BattleAmbienceController : MonoBehaviour
     public static BattleAmbienceController Instance { get; private set; }
         
     public List<AmbienceManager> AmbienceManagers { get; private set; }
+    public List<SoundZoneController> SoundZones { get; private set; }
+
+    public bool UseZones;
 
     private bool _gameStarted = false;
 
@@ -32,9 +36,11 @@ public class BattleAmbienceController : MonoBehaviour
     public void OnGameStarted()
     {
         AmbienceManagers = new List<AmbienceManager>();
+        SoundZones = new List<SoundZoneController>();
 
         string mapId = GameWorldHelper.GetCurrentMapId();
         AmbientHelper.MapAmbienceEvents.TryGetValue(mapId, out AmbienceEvents mapEvents);
+        MapConfigBase mapConfig = ConfigHelper.GetMapConfig(mapId);
 
         if (mapEvents == null)
         {
@@ -42,15 +48,31 @@ public class BattleAmbienceController : MonoBehaviour
             return;
         }
 
+        // load ambience groups
         foreach (KeyValuePair<string, AmbienceEventConfigGroup> kvp in mapEvents.AmbienceEventGroups)
         {
             AmbienceManager ambienceTimer = new AmbienceManager();
             ambienceTimer.EventConfigGroup = kvp.Value;
             ambienceTimer.ChooseNextAmbience(1f, true);
-
             AmbienceManagers.Add(ambienceTimer);
         }
+        
+        // load sound zones
+        if (mapConfig.UseSoundZones.Value)
+        {
+            foreach (SoundZoneEntry soundZone in mapEvents.SoundZones)
+            {
+                var newZone = new GameObject(soundZone.Name);
+                newZone.transform.position = soundZone.Position;
+                newZone.transform.rotation = soundZone.Rotation;
+                newZone.transform.localScale = soundZone.Scale;
+                var controller = newZone.AddComponent<SoundZoneController>();
+                SoundZones.Add(controller);
+            }
 
+            UseZones = SoundZones.Count > 0;
+        }
+        
         _gameStarted = true;
     }
 
@@ -78,5 +100,10 @@ public class BattleAmbienceController : MonoBehaviour
         {
             manager.Update(dt);
         }
+    }
+    
+    public List<SoundZoneController> GetSoundZones()
+    {
+        return SoundZones;
     }
 }

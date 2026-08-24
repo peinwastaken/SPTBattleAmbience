@@ -70,7 +70,8 @@ public static class ConfigHelper
             EnableEvents = true,
             MapCenter = new Vector3(-215f, 0, 165f),
             MapRadius = 1000f,
-            UsePlayerDirection = true
+            UsePlayerDirection = true,
+            UseSoundZones = true
         });
 
         MapConfigs["interchange"] = new MapConfigBase(config, new MapConfigStruct
@@ -96,7 +97,8 @@ public static class ConfigHelper
             EnableEvents = true,
             MapCenter = new Vector3(-15, 0, -185),
             MapRadius = 1200f,
-            UsePlayerDirection = true
+            UsePlayerDirection = true,
+            UseSoundZones = true
         });
 
         MapConfigs["rezervbase"] = new MapConfigBase(config, new MapConfigStruct

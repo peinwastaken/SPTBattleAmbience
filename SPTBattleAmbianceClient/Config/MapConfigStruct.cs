@@ -13,4 +13,5 @@ public struct MapConfigStruct
     public Vector3 MapCenter;
     public float MapRadius;
     public bool UsePlayerDirection;
+    public bool UseSoundZones;
 }

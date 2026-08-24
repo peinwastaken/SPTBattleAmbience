@@ -4,6 +4,7 @@ using Fika.Core.Networking;
 using HarmonyLib;
 using SPT.Reflection.Patching;
 using SPTBattleAmbience.Config;
+using SPTBattleAmbience.Controllers;
 using SPTBattleAmbience.Helpers;
 using SPTBattleAmbience.Managers;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ public class CalculateEventPositionPatch : ModulePatch
     [PatchPrefix]
     private static bool PatchPostfix(AmbienceManager __instance, ref Vector3 __result)
     {
-        if (FikaData.IsServer)
+        if (FikaData.IsServer && !BattleAmbienceController.Instance.UseZones)
         {
             IFikaNetworkManager server = Singleton<IFikaNetworkManager>.Instance;
             List<FikaPlayer> players = server.CoopHandler.HumanPlayers;
@@ -46,7 +47,7 @@ public class CalculateEventPositionPatch : ModulePatch
             float mapSize = mapConfig.MapRadius.Value;
             Vector3 pos = mapCenter + averageDir * mapSize;
             
-            __result = Utils.GetVectorWithAngleOffset(pos, 25f, false);
+            __result = ModUtils.GetVectorWithAngleOffset(pos, 25f, false);
             
             return false;
         }

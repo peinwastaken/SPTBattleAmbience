@@ -14,6 +14,7 @@ public class MapConfigBase
     public ConfigEntry<Vector3> MapCenter { get; set; }
     public ConfigEntry<float> MapRadius { get; set; }
     public ConfigEntry<bool> UsePlayerDirection { get; set; }
+    public ConfigEntry<bool> UseSoundZones { get; set; }
 
     public MapConfigBase(ConfigFile config, MapConfigStruct configValues)
     {
@@ -26,7 +27,8 @@ public class MapConfigBase
         MapCenter = config.Bind(category, "Map Center", configValues.MapCenter, new ConfigDescription("Center point of the map for spawning battle sounds.", null, new ConfigurationManagerAttributes { Order = 960, IsAdvanced = true }));
         MapRadius = config.Bind(category, "Map Radius", configValues.MapRadius, new ConfigDescription("Radius from the map center to spawn battle sounds.", null, new ConfigurationManagerAttributes { Order = 950, IsAdvanced = true }));
         UsePlayerDirection = config.Bind(category, "Use Player Direction", configValues.UsePlayerDirection, new ConfigDescription("If enabled, battle sounds will spawn in the rough direction the player is facing relative to the center of the map. If disabled, battle sounds will spawn randomly around the player.", null, new ConfigurationManagerAttributes { Order = 940, IsAdvanced = true }));
-
+        UseSoundZones = config.Bind(category, "Use Sound Zones", configValues.UseSoundZones, new ConfigDescription("If enabled, battle sounds will spawn in sound zones specified in the map config json. Fixes submarine battles on certain maps like Lighthouse and Shoreline.", null, new ConfigurationManagerAttributes { Order = 930, IsAdvanced = true }));
+        
         MapDefaultData = configValues;
     }
 }

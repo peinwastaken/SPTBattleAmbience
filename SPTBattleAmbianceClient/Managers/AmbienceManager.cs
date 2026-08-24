@@ -101,12 +101,24 @@ public class AmbienceManager
         
     public Vector3 CalculateSpawnPoint(Player player, MapConfigBase mapConfig, AmbienceEventConfig ambienceEvent)
     {
+        var ambienceController = BattleAmbienceController.Instance;
+        
         // if were headless handle spawn point through fika sync plugin
         if (!player || FikaData.IsHeadless)
         {
             return Vector3.zero;
         }
-            
+        
+        // if map uses sound zones then pick one of those to play audio in
+        if (ambienceController.UseZones)
+        {
+            List<SoundZoneController> soundZones = ambienceController.GetSoundZones();
+            SoundZoneController soundZone = soundZones.PickRandom();
+            Vector3 pos = soundZone.PickRandomPoint().WithY(0);
+            return pos;
+        }
+         
+        // if map doesnt use sound zones then use player direction from center
         if (mapConfig.UsePlayerDirection.Value && ambienceEvent.UsePlayerDirection)
         {
             Vector3 mapCenter = mapConfig.MapCenter.Value;
